@@ -25,12 +25,16 @@ export default function CenteredGrid() {
     <div className={classes.root}>
       <Container>
         <Grid item xs={12}>
-          {/* <Paper className={classes.paper}>xs=12</Paper> */}
           <QuestionCard />
         </Grid>
-        {/* <Grid item xs={6}>
-          <Paper className={classes.paper}>xs=6</Paper>
-        </Grid> */}
+      </Container>
+      <br />
+      <br />
+      <br />
+      <Container>
+        <Grid item xs={12}>
+          <QuestionCard />
+        </Grid>
       </Container>
     </div>
   );
