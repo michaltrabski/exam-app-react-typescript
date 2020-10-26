@@ -108,8 +108,9 @@ export default function Navbar() {
       >
         <Toolbar>
           <Typography variant="h6" noWrap className={classes.title}>
-            Persistent drawer
+            1/32
           </Typography>
+
           <IconButton
             color="inherit"
             aria-label="open drawer"
