@@ -16,9 +16,13 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       maxWidth: 700,
+      marginBottom: theme.spacing(30),
     },
     endExam: {
       // marginBottom: theme.spacing(1),
+    },
+    questionText: {
+      fontSize: "1.1rem",
     },
   })
 );
@@ -40,17 +44,12 @@ export default function QuestionCard() {
             title="Contemplative Reptile"
           />
           <CardContent>
-            <Typography gutterBottom variant="h6" component="h2">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius,
-              maiores.
-            </Typography>
-
-            <Typography gutterBottom variant="body1" component="h1">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius,
-              maiores.
-            </Typography>
-
-            <Typography gutterBottom variant="body2" component="h1">
+            <Typography
+              gutterBottom
+              variant="h6"
+              component="h2"
+              className={classes.questionText}
+            >
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius,
               maiores.
             </Typography>

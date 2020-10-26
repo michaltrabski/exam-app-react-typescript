@@ -85,6 +85,9 @@ const useStyles = makeStyles((theme: Theme) =>
     toolbar: {
       justifyContent: "space-between",
     },
+    button: {
+      minWidth: "0",
+    },
   })
 );
 
@@ -111,10 +114,18 @@ export default function Navbar() {
         })}
       >
         <Toolbar className={classes.toolbar}>
-          <Button color="inherit">1/32</Button>
-          <Button color="inherit">Kat: B</Button>
-          <Button color="inherit">24:59</Button>
-          <Button color="inherit">Zakończ</Button>
+          <Button color="inherit" className={classes.button}>
+            1/32
+          </Button>
+          <Button color="inherit" className={classes.button}>
+            Kat: B
+          </Button>
+          <Button color="inherit" className={classes.button}>
+            24:59
+          </Button>
+          <Button color="inherit" className={classes.button}>
+            Zakończ
+          </Button>
 
           {/* <Typography variant="h6" noWrap className={classes.title}>
             poznaj-egzamin.pl
