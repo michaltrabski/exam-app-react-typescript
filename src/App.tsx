@@ -1,12 +1,12 @@
 import React from "react";
 import Navbar from "./components/Navbar";
-import QuestionCard from "./components/QuestionCard";
+import Main from "./components/Main";
 
 function App() {
   return (
     <>
       <Navbar />
-      <QuestionCard />
+      <Main />
     </>
   );
 }

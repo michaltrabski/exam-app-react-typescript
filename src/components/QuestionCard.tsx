@@ -7,10 +7,11 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { MEDIA_URl } from "../settings/settings";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    maxWidth: 700,
   },
 });
 
@@ -23,8 +24,8 @@ export default function QuestionCard() {
         <CardMedia
           component="img"
           alt="Contemplative Reptile"
-          height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
+          // height="140"
+          image={MEDIA_URl}
           title="Contemplative Reptile"
         />
         <CardContent>

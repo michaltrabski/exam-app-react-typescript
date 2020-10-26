@@ -127,7 +127,7 @@ export default function Navbar() {
         })}
       >
         <div className={classes.drawerHeader} />
-        <Typography paragraph>
+        {/* <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
           dolor purus non enim praesent elementum facilisis leo vel. Risus at
@@ -135,7 +135,7 @@ export default function Navbar() {
         </Typography>
         <Typography paragraph>
           Consequat mauris nunc congue nisi vitae suscipit.
-        </Typography>
+        </Typography> */}
       </main>
       <Drawer
         className={classes.drawer}
