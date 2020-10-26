@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import { MEDIA_URl } from "../settings/settings";
 import Answers from "./Answers";
 import { Grid } from "@material-ui/core";
+import ProgressBar from "./ProgressBar";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -17,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
       maxWidth: 700,
     },
     endExam: {
-      marginBottom: theme.spacing(1),
+      // marginBottom: theme.spacing(1),
     },
   })
 );
@@ -27,18 +28,8 @@ export default function QuestionCard() {
 
   return (
     <>
-      <Grid container justify={"space-between"}>
-        <Typography gutterBottom variant="h6" component="h2">
-          1/32
-        </Typography>
-        <Typography gutterBottom variant="h6" component="h2">
-          Kat: B
-        </Typography>
-        <Typography gutterBottom variant="h6" component="h2">
-          24:59
-        </Typography>
-        <Button className={classes.endExam}>Zakończ</Button>
-      </Grid>
+      <ProgressBar />
+
       <Card className={classes.root}>
         <CardActionArea>
           <CardMedia
@@ -49,12 +40,17 @@ export default function QuestionCard() {
             title="Contemplative Reptile"
           />
           <CardContent>
-            {/* <Typography gutterBottom variant="h5" component="h2">
+            <Typography gutterBottom variant="h6" component="h2">
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius,
               maiores.
-            </Typography> */}
+            </Typography>
 
-            <Typography gutterBottom variant="h6" component="h1">
+            <Typography gutterBottom variant="body1" component="h1">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius,
+              maiores.
+            </Typography>
+
+            <Typography gutterBottom variant="body2" component="h1">
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius,
               maiores.
             </Typography>

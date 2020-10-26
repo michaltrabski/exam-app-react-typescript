@@ -22,6 +22,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
+import { Button, Grid } from "@material-ui/core";
 
 const drawerWidth = 240;
 
@@ -67,7 +68,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     content: {
       flexGrow: 1,
-      padding: theme.spacing(3),
+      padding: theme.spacing(1),
       transition: theme.transitions.create("margin", {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
@@ -80,6 +81,9 @@ const useStyles = makeStyles((theme: Theme) =>
         duration: theme.transitions.duration.enteringScreen,
       }),
       marginRight: 0,
+    },
+    toolbar: {
+      justifyContent: "space-between",
     },
   })
 );
@@ -106,10 +110,15 @@ export default function Navbar() {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar>
-          <Typography variant="h6" noWrap className={classes.title}>
-            1/32
-          </Typography>
+        <Toolbar className={classes.toolbar}>
+          <Button color="inherit">1/32</Button>
+          <Button color="inherit">Kat: B</Button>
+          <Button color="inherit">24:59</Button>
+          <Button color="inherit">Zakończ</Button>
+
+          {/* <Typography variant="h6" noWrap className={classes.title}>
+            poznaj-egzamin.pl
+          </Typography> */}
 
           <IconButton
             color="inherit"
