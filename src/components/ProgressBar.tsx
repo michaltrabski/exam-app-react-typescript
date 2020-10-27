@@ -5,12 +5,17 @@ import LinearProgress, {
 } from "@material-ui/core/LinearProgress";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import { Button } from "@material-ui/core";
+import { label } from "../settings/settings";
 
 function LinearProgressWithLabel(
   props: LinearProgressProps & { value: number }
 ) {
   return (
     <Box display="flex" alignItems="center">
+      <Box>
+        <Button>{label.startVideo}</Button>
+      </Box>
       <Box width="100%" mr={1}>
         <LinearProgress variant="determinate" {...props} />
       </Box>
@@ -31,13 +36,11 @@ const useStyles = makeStyles({
 
 export default function ProgressBar() {
   const classes = useStyles();
-  const [progress, setProgress] = React.useState(20);
+  const [progress, setProgress] = React.useState(0);
 
   React.useEffect(() => {
     const timer = setInterval(() => {
-      setProgress((prevProgress) =>
-        prevProgress >= 100 ? 10 : prevProgress + 10
-      );
+      setProgress((prevProgress) => prevProgress + 1);
     }, 1000);
     return () => {
       clearInterval(timer);

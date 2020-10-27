@@ -10,7 +10,9 @@ import Typography from "@material-ui/core/Typography";
 import { MEDIA_URl } from "../settings/settings";
 import Answers from "./Answers";
 import { Grid } from "@material-ui/core";
-import ProgressBar from "./ProgressBar";
+import ProgressBar from "./ProgressBar2";
+import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
+import MyProgressBar from "./MyProgressBar";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -23,6 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     questionText: {
       fontSize: "1.1rem",
+      marginBottom: 0,
     },
   })
 );
@@ -32,7 +35,7 @@ export default function QuestionCard() {
 
   return (
     <>
-      <ProgressBar />
+      <MyProgressBar />
 
       <Card className={classes.root}>
         <CardActionArea>
@@ -43,24 +46,19 @@ export default function QuestionCard() {
             image={MEDIA_URl}
             title="Contemplative Reptile"
           />
-          <CardContent>
-            <Typography
-              gutterBottom
-              variant="h6"
-              component="h2"
-              className={classes.questionText}
-            >
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius,
-              maiores.
-            </Typography>
-
-            {/* <Typography variant="body2" color="textSecondary" component="p">
-              Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
-            </Typography> */}
-          </CardContent>
         </CardActionArea>
 
+        <CardActions>
+          <Typography
+            gutterBottom
+            variant="h6"
+            component="h2"
+            className={classes.questionText}
+          >
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius,
+            maiores.
+          </Typography>
+        </CardActions>
         <CardActions>
           <Answers
             a="Lorem ipsum dolor sit amet."
@@ -70,7 +68,13 @@ export default function QuestionCard() {
         </CardActions>
 
         <CardActions>
-          <Button variant="contained" color="primary" fullWidth size="large">
+          <Button
+            variant="contained"
+            color="primary"
+            fullWidth
+            size="large"
+            endIcon={<ArrowRightAltIcon />}
+          >
             Następne
           </Button>
         </CardActions>
