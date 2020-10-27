@@ -1,12 +1,22 @@
 import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Main from "./components/Main";
-
+import Home from "./pages/Home";
+import GlobalStateProvider from "./store/GlobalStateProvider";
 function App() {
   return (
     <>
-      <Navbar />
-      <Main />
+      <GlobalStateProvider>
+        <Router>
+          <Navbar />
+
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </Router>
+      </GlobalStateProvider>
     </>
   );
 }

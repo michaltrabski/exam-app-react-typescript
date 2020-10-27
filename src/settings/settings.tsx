@@ -3,4 +3,6 @@ export const MEDIA_URl =
 
 export const label = {
   startVideo: "Start",
+  login: ["Logowanie", "/logowanie"],
+  register: ["Rejestracja", "/rejestracja"],
 };

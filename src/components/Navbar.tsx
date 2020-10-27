@@ -23,75 +23,15 @@ import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import { Button, Grid } from "@material-ui/core";
+import { label } from "../settings/settings";
+import { Link } from "react-router-dom";
+import GroupAddIcon from "@material-ui/icons/GroupAdd";
+import LockOpenIcon from "@material-ui/icons/LockOpen";
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: "flex",
-    },
-    appBar: {
-      transition: theme.transitions.create(["margin", "width"], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-    },
-    appBarShift: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      transition: theme.transitions.create(["margin", "width"], {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginRight: drawerWidth,
-    },
-    title: {
-      flexGrow: 1,
-    },
-    hide: {
-      display: "none",
-    },
-    drawer: {
-      width: drawerWidth,
-      flexShrink: 0,
-    },
-    drawerPaper: {
-      width: drawerWidth,
-    },
-    drawerHeader: {
-      display: "flex",
-      alignItems: "center",
-      padding: theme.spacing(0, 1),
-      // necessary for content to be below app bar
-      ...theme.mixins.toolbar,
-      justifyContent: "flex-start",
-    },
-    content: {
-      flexGrow: 1,
-      padding: theme.spacing(1),
-      transition: theme.transitions.create("margin", {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-      marginRight: -drawerWidth,
-    },
-    contentShift: {
-      transition: theme.transitions.create("margin", {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginRight: 0,
-    },
-    toolbar: {
-      justifyContent: "space-between",
-    },
-    button: {
-      minWidth: "0",
-    },
-  })
-);
-
 export default function Navbar() {
+  const isExamOn = false;
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -114,22 +54,43 @@ export default function Navbar() {
         })}
       >
         <Toolbar className={classes.toolbar}>
-          <Button color="inherit" className={classes.button}>
-            1/32
-          </Button>
-          <Button color="inherit" className={classes.button}>
-            Kat: B
-          </Button>
-          <Button color="inherit" className={classes.button}>
-            24:59
-          </Button>
-          <Button color="inherit" className={classes.button}>
-            Zakończ
-          </Button>
-
-          {/* <Typography variant="h6" noWrap className={classes.title}>
-            poznaj-egzamin.pl
-          </Typography> */}
+          {isExamOn ? (
+            <>
+              <Button color="inherit" className={classes.button}>
+                1/32
+              </Button>
+              <Button color="inherit" className={classes.button}>
+                Kat: B
+              </Button>
+              <Button color="inherit" className={classes.button}>
+                24:59
+              </Button>
+              <Button color="inherit" className={classes.button}>
+                Zakończ
+              </Button>
+            </>
+          ) : (
+            <>
+              <Typography variant="h6" noWrap className={classes.title}>
+                poznaj-egzamin.pl
+              </Typography>
+              <Button color="inherit" className={classes.button}>
+                Testy
+              </Button>
+              <Button color="inherit" className={classes.button}>
+                Pytania
+              </Button>
+              <Button color="inherit" className={classes.button}>
+                Cennik
+              </Button>
+              <Button color="inherit" className={classes.button}>
+                Rejestracja
+              </Button>
+              <Button color="inherit" className={classes.button}>
+                Logowanie
+              </Button>
+            </>
+          )}
 
           <IconButton
             color="inherit"
@@ -189,16 +150,85 @@ export default function Navbar() {
         </List>
         <Divider />
         <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          <ListItem button component={Link} to={label.login[1]}>
+            <ListItemIcon>
+              <LockOpenIcon />
+            </ListItemIcon>
+            <ListItemText primary={label.login[0]} />
+          </ListItem>
+
+          <ListItem button component={Link} to={label.register[1]}>
+            <ListItemIcon>
+              <GroupAddIcon />
+            </ListItemIcon>
+            <ListItemText primary={label.register[0]} />
+          </ListItem>
         </List>
       </Drawer>
     </div>
   );
 }
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      display: "flex",
+    },
+    appBar: {
+      transition: theme.transitions.create(["margin", "width"], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+    },
+    appBarShift: {
+      width: `calc(100% - ${drawerWidth}px)`,
+      transition: theme.transitions.create(["margin", "width"], {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+      marginRight: drawerWidth,
+    },
+    title: {
+      // flexGrow: 1,
+    },
+    hide: {
+      display: "none",
+    },
+    drawer: {
+      width: drawerWidth,
+      flexShrink: 0,
+    },
+    drawerPaper: {
+      width: drawerWidth,
+    },
+    drawerHeader: {
+      display: "flex",
+      alignItems: "center",
+      padding: theme.spacing(0, 1),
+      // necessary for content to be below app bar
+      ...theme.mixins.toolbar,
+      justifyContent: "flex-start",
+    },
+    content: {
+      flexGrow: 1,
+      padding: theme.spacing(1),
+      transition: theme.transitions.create("margin", {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+      marginRight: -drawerWidth,
+    },
+    contentShift: {
+      transition: theme.transitions.create("margin", {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+      marginRight: 0,
+    },
+    toolbar: {
+      justifyContent: "space-between",
+    },
+    button: {
+      minWidth: "0",
+    },
+  })
+);
