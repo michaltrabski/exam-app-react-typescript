@@ -30,9 +30,8 @@ const useStyles = makeStyles((theme: Theme) =>
       top: 0,
       left: "50%",
       transform: "translateX(-50%)",
-      //   height: 15,
-      //   width: "10%",
-      //   backgroundColor: green[500],
+      width: "100%",
+      textAlign: "center",
     },
   })
 );

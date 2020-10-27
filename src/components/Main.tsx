@@ -4,6 +4,7 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import QuestionCard from "./QuestionCard";
 import { Container } from "@material-ui/core";
+import Offer from "./Offer";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -26,6 +27,9 @@ export default function CenteredGrid() {
       <Container>
         <Grid item xs={12}>
           <QuestionCard />
+        </Grid>
+        <Grid item xs={12}>
+          <Offer />
         </Grid>
       </Container>
     </div>

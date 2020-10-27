@@ -9,16 +9,17 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { MEDIA_URl } from "../settings/settings";
 import Answers from "./Answers";
-import { Grid } from "@material-ui/core";
+import { Grid, IconButton } from "@material-ui/core";
 import ProgressBar from "./ProgressBar2";
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import MyProgressBar from "./MyProgressBar";
+import QuestionAnswerOutlinedIcon from "@material-ui/icons/QuestionAnswerOutlined";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       maxWidth: 700,
-      marginBottom: theme.spacing(30),
+      marginBottom: theme.spacing(4),
     },
     endExam: {
       // marginBottom: theme.spacing(1),
@@ -80,21 +81,20 @@ export default function QuestionCard() {
         </CardActions>
 
         {/* <CardActions>
-        <Answers
-          a=""
-          b="Lorem ipsum dolor sit amet."
-          c="Lorem ipsum dolor sit amet."
-        />
-      </CardActions> */}
-
-        <CardActions>
           <Button size="small" color="primary">
             Share
           </Button>
           <Button size="small" color="primary">
             Learn More
           </Button>
-        </CardActions>
+          <IconButton
+            color="primary"
+            aria-label="upload picture"
+            component="span"
+          >
+            <QuestionAnswerOutlinedIcon />
+          </IconButton>
+        </CardActions> */}
       </Card>
     </>
   );
