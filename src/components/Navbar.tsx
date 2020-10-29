@@ -138,31 +138,23 @@ export default function Navbar() {
           </IconButton>
         </div>
         <Divider />
+
         <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
+          {["home"].map((item) => (
+            <ListItem button component={Link} to={(label as any)[item].url}>
+              <ListItemIcon>{(label as any)[item].icon}</ListItemIcon>
+              <ListItemText primary={(label as any)[item].text} />
             </ListItem>
           ))}
         </List>
         <Divider />
         <List>
-          <ListItem button component={Link} to={label.login[1]}>
-            <ListItemIcon>
-              <LockOpenIcon />
-            </ListItemIcon>
-            <ListItemText primary={label.login[0]} />
-          </ListItem>
-
-          <ListItem button component={Link} to={label.register[1]}>
-            <ListItemIcon>
-              <GroupAddIcon />
-            </ListItemIcon>
-            <ListItemText primary={label.register[0]} />
-          </ListItem>
+          {["login", "register"].map((item) => (
+            <ListItem button component={Link} to={(label as any)[item].url}>
+              <ListItemIcon>{(label as any)[item].icon}</ListItemIcon>
+              <ListItemText primary={(label as any)[item].text} />
+            </ListItem>
+          ))}
         </List>
       </Drawer>
     </div>
