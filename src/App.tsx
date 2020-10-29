@@ -2,21 +2,20 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
-import GlobalStateProvider from "./store/GlobalStateProvider";
+import Login from "./pages/Login";
+import { label } from "./settings/settings";
+
 function App() {
   return (
     <>
-      <GlobalStateProvider>
-        <Router>
-          <Navbar />
+      <Router>
+        <Navbar />
 
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-          </Switch>
-        </Router>
-      </GlobalStateProvider>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path={label.login[1]} component={Login} />
+        </Switch>
+      </Router>
     </>
   );
 }
