@@ -33,7 +33,7 @@ export const getQuestions = () => async (
         type: "GET_QUESTIONS_SUCCESS",
         payload: [question1, question2, question3],
       });
-    }, 2000);
+    }, 500);
     // const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
     // console.log("GetPokemon", res);
 
