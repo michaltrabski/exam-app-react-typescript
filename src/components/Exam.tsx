@@ -51,7 +51,7 @@ export default function Exam() {
   return (
     <Grid item xs={12}>
       {/* Rozpocznij egzamin */}
-      {exam.length > 0 && (
+      {exam.length > 0 && open && (
         <Fade in={open}>
           <div>
             <QuestionCard question={question} nextQuestion={nextQuestion} />
