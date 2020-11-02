@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { StoreType } from "../redux/store/store";
+import { State } from "../redux/store/store";
 
 function Login() {
-  const x = useSelector((state: StoreType) => state);
+  const x = useSelector((state: State) => state);
 
   console.log(x);
   return (

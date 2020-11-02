@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -21,6 +22,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route path={label.login.url} component={Login} />
         </Switch>
+        <Footer />
       </Router>
     </>
   );

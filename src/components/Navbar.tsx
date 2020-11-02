@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import clsx from "clsx";
 import {
   makeStyles,
@@ -27,6 +27,7 @@ import { label } from "../settings/settings";
 import { Link } from "react-router-dom";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
+import { useDimension } from "../hooks/hooks";
 
 const drawerWidth = 240;
 
@@ -35,6 +36,14 @@ export default function Navbar() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+
+  const element = useRef<HTMLInputElement>(null);
+  const { innerWidth, innerHeight } = useDimension();
+
+  useEffect(() => {
+    // console.log("element", element, element?.current?.id);
+    // console.log(innerWidth, innerHeight);
+  }, []);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -53,7 +62,7 @@ export default function Navbar() {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar className={classes.toolbar}>
+        <Toolbar className={classes.toolbar} ref={element} id="abcabc">
           {isExamOn ? (
             <>
               <Button color="inherit" className={classes.button}>

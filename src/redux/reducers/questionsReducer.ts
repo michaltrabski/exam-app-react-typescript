@@ -1,18 +1,32 @@
-import { QuestionType } from "../actions/questoinsActionsTypes";
+import { QuestionType, QuestionsDispatchType } from "../actions/questionsTypes";
 
-interface QuestionsStateI {
+interface QuestionsState {
   questions: QuestionType[];
+  id: string;
 }
 
-const defaultState = {
+const defaultState: QuestionsState = {
   questions: [],
+  id: "id123",
 };
 
 const questionsReducer = (
-  state: QuestionsStateI = defaultState,
-  action: any
+  state: QuestionsState = defaultState,
+  action: QuestionsDispatchType
 ) => {
-  return state;
+  switch (action.type) {
+    case "GET_QUESTIONS":
+      return state;
+    case "GET_QUESTIONS_SUCCESS":
+      console.log(" action.payload", action.payload);
+      state = {
+        ...state,
+        questions: action.payload,
+      };
+      return state;
+    default:
+      return state;
+  }
 };
 
 export default questionsReducer;

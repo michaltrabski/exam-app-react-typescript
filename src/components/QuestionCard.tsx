@@ -14,11 +14,12 @@ import ProgressBar from "./ProgressBar2";
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import MyProgressBar from "./MyProgressBar";
 import QuestionAnswerOutlinedIcon from "@material-ui/icons/QuestionAnswerOutlined";
+import { QuestionType } from "../redux/actions/questionsTypes";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      maxWidth: 700,
+      // maxWidth: 700,
       marginBottom: theme.spacing(4),
     },
     endExam: {
@@ -31,8 +32,13 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function QuestionCard() {
+type Props = {
+  question: QuestionType;
+  nextQuestion: () => void;
+};
+const QuestionCard = (props: Props) => {
   const classes = useStyles();
+  const { question, nextQuestion } = props;
 
   return (
     <>
@@ -56,16 +62,11 @@ export default function QuestionCard() {
             component="h2"
             className={classes.questionText}
           >
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius,
-            maiores.
+            {question.text}
           </Typography>
         </CardActions>
         <CardActions>
-          <Answers
-            a="Lorem ipsum dolor sit amet."
-            b="Lorem ipsum dolor sit amet."
-            c="Lorem ipsum dolor sit amet."
-          />
+          <Answers a={question.a} b={question.b} c={question.c} />
         </CardActions>
 
         <CardActions>
@@ -75,6 +76,7 @@ export default function QuestionCard() {
             fullWidth
             size="large"
             endIcon={<ArrowRightAltIcon />}
+            onClick={nextQuestion}
           >
             Następne
           </Button>
@@ -98,4 +100,6 @@ export default function QuestionCard() {
       </Card>
     </>
   );
-}
+};
+
+export default QuestionCard;
