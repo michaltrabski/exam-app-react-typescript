@@ -23,7 +23,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import { Button, Grid } from "@material-ui/core";
-import { label } from "../settings/settings";
+import { label, topMenuSideLinks } from "../settings/settings";
 import { Link } from "react-router-dom";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
@@ -149,7 +149,8 @@ export default function Navbar() {
         <Divider />
 
         <List>
-          {["home", "divider", "login", "register"].map((item) => {
+          {console.log(topMenuSideLinks)}
+          {topMenuSideLinks.map((item) => {
             return (
               <>
                 {item === "divider" ? (
