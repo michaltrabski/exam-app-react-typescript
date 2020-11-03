@@ -6,12 +6,14 @@ const question1: QuestionType = {
   a: "",
   b: "",
   c: "",
+  media: "D26_015org.jpg"
 };
 const question2: QuestionType = {
   text: "Pytanie 2 inne...",
   a: "odp a.",
   b: "odp b.",
   c: "odp c.",
+  media: "1472D14MMorg.jpg"
 };
 
 const question3: QuestionType = {
@@ -19,6 +21,7 @@ const question3: QuestionType = {
   a: "odp a. asfd",
   b: "odp b. sdf s",
   c: "odp c. sdf ",
+  media: "4011.mp4"
 };
 
 export const getQuestions = () => async (

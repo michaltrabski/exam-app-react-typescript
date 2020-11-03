@@ -24,7 +24,6 @@ import { fadeDuration } from "../settings/settings";
 
 export default function Exam() {
   //   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
   const { questions } = useSelector((state: State) => state.questionsReducer);
   const [index, setIndex] = useState(0);
 
@@ -32,31 +31,20 @@ export default function Exam() {
   const question = exam[index];
 
   const nextQuestion = () => {
-    setOpen(false);
     if (index < exam.length - 1) {
       setIndex((prevIndex) => prevIndex + 1);
-      // setOpen(true);
-
-      setTimeout(() => {
-        setOpen(true);
-      }, fadeDuration);
     } else {
       setIndex(0);
-      setTimeout(() => {
-        setOpen(true);
-      }, fadeDuration);
     }
   };
 
   return (
     <Grid item xs={12}>
       {/* Rozpocznij egzamin */}
-      {exam.length > 0 && open && (
-        <Fade in={open}>
-          <div>
-            <QuestionCard question={question} nextQuestion={nextQuestion} />
-          </div>
-        </Fade>
+      {exam.length > 0 && (
+        <>
+          <QuestionCard question={question} nextQuestion={nextQuestion} />
+        </>
       )}
     </Grid>
   );

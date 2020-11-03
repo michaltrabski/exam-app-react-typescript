@@ -40,6 +40,8 @@ const QuestionCard = (props: Props) => {
   const classes = useStyles();
   const { question, nextQuestion } = props;
 
+  const isVideo = question.media.includes(".mp4");
+
   return (
     <>
       <MyProgressBar />
@@ -47,11 +49,11 @@ const QuestionCard = (props: Props) => {
       <Card className={classes.root}>
         <CardActionArea>
           <CardMedia
-            component="img"
+            component={isVideo ? "video" : "img"}
             alt="Contemplative Reptile"
-            // height="140"
-            image={MEDIA_URl}
-            title="Contemplative Reptile"
+            image={MEDIA_URl + question.media}
+            title="video or image title"
+            controls={isVideo}
           />
         </CardActionArea>
 

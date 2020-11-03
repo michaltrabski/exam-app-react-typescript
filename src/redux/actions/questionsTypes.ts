@@ -3,6 +3,7 @@ export type QuestionType = {
   a: string;
   b: string;
   c: string;
+  media: string;
 };
 
 export type QuestionsDispatchType =

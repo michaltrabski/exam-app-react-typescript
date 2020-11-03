@@ -149,21 +149,24 @@ export default function Navbar() {
         <Divider />
 
         <List>
-          {["home"].map((item) => (
-            <ListItem button component={Link} to={(label as any)[item].url}>
-              <ListItemIcon>{(label as any)[item].icon}</ListItemIcon>
-              <ListItemText primary={(label as any)[item].text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {["login", "register"].map((item) => (
-            <ListItem button component={Link} to={(label as any)[item].url}>
-              <ListItemIcon>{(label as any)[item].icon}</ListItemIcon>
-              <ListItemText primary={(label as any)[item].text} />
-            </ListItem>
-          ))}
+          {["home", "divider", "login", "register"].map((item) => {
+            return (
+              <>
+                {item === "divider" ? (
+                  <Divider />
+                ) : (
+                  <ListItem
+                    button
+                    component={Link}
+                    to={(label as any)[item].url}
+                  >
+                    <ListItemIcon>{(label as any)[item].icon}</ListItemIcon>
+                    <ListItemText primary={(label as any)[item].text} />
+                  </ListItem>
+                )}
+              </>
+            );
+          })}
         </List>
       </Drawer>
     </div>
