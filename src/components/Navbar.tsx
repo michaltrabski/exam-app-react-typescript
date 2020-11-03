@@ -32,7 +32,7 @@ import { useDimension } from "../hooks/hooks";
 const drawerWidth = 240;
 
 export default function Navbar() {
-  const isExamOn = false;
+  const isExamOn = true;
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
