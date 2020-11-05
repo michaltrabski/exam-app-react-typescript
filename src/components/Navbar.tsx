@@ -22,6 +22,7 @@ import MoreIcon from "@material-ui/icons/MoreVert";
 import NavbarMobile from "./NavbarMobile";
 import { useDispatch } from "react-redux";
 import { toogleMobileMenu } from "../redux/actions/uiActions";
+import { Link, useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -33,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) =>
       marginLeft: theme.spacing(2),
     },
     title: {
-      display: "none",
+      display: "block",
       [theme.breakpoints.up("sm")]: {
         display: "block",
       },
@@ -95,6 +96,7 @@ type Anchor = "top" | "left" | "bottom" | "right";
 export default function Navbar() {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const toggleDrawer = (anchor: Anchor, open: boolean) => (
     event: React.KeyboardEvent | React.MouseEvent
@@ -200,10 +202,15 @@ export default function Navbar() {
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
-          <Typography className={classes.title} variant="h6" noWrap>
+          <Typography
+            className={classes.title}
+            variant="h6"
+            noWrap
+            onClick={() => history.push("/")}
+          >
             poznaj-egzamin.pl
           </Typography>
-          <div className={classes.search}>
+          {/* <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
@@ -215,7 +222,7 @@ export default function Navbar() {
               }}
               inputProps={{ "aria-label": "search" }}
             />
-          </div>
+          </div> */}
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="show 4 new mails" color="inherit">

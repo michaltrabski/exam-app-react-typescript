@@ -93,7 +93,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function Navbar() {
+export default function Navbar1() {
   const isExamOn = true;
   const classes = useStyles();
   const theme = useTheme();

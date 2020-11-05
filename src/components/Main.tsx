@@ -31,7 +31,7 @@ export default function CenteredGrid() {
             <Exam />
           </Grid>
           <Grid item xs={12} md={5}>
-            {/* <Offer /> */}
+            <Offer />
           </Grid>
         </Grid>
       </Container>

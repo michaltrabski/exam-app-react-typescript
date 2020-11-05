@@ -15,15 +15,25 @@ import { State } from "../redux/store/store";
 import { toogleMobileMenu } from "../redux/actions/uiActions";
 import { label, topMenuSideLinks } from "../settings/settings";
 import { Link } from "react-router-dom";
+import { IconButton, Theme } from "@material-ui/core";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme: Theme) => ({
   list: {
     width: 250,
   },
   fullList: {
     width: "auto",
   },
-});
+  drawerHeader: {
+    display: "flex",
+    alignItems: "center",
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+    justifyContent: "flex-start",
+  },
+}));
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
@@ -32,14 +42,6 @@ function SwipeableTemporaryDrawer() {
 
   const { navbarMobileState } = useSelector((state: State) => state.uiReducer);
   const dispatch = useDispatch();
-  console.log("state", navbarMobileState);
-
-  // const [navbarMobileState, setNavbarMobileState] = React.useState({
-  //   top: false,
-  //   left: false,
-  //   bottom: false,
-  //   right: false,
-  // });
 
   const toggleDrawer = (anchor: Anchor, open: boolean) => (
     event: React.KeyboardEvent | React.MouseEvent
@@ -54,8 +56,6 @@ function SwipeableTemporaryDrawer() {
       return;
     }
 
-    // setNavbarMobileState({ ...navbarMobileState, [anchor]: open });
-
     dispatch(toogleMobileMenu(anchor, open));
   };
 
@@ -68,6 +68,13 @@ function SwipeableTemporaryDrawer() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
+      <div className={classes.drawerHeader}>
+        <IconButton onClick={() => console.log("clicked")}>
+          <ChevronRightIcon />
+        </IconButton>
+      </div>
+      <Divider />
+
       <List>
         {console.log(topMenuSideLinks)}
 
@@ -91,11 +98,11 @@ function SwipeableTemporaryDrawer() {
 
   return (
     <div>
-      {JSON.stringify(navbarMobileState)}
       {(["left", "right", "top", "bottom"] as Anchor[]).map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+          {/* <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button> */}
           <SwipeableDrawer
+            swipeAreaWidth={0}
             anchor={anchor}
             open={navbarMobileState[anchor]}
             onClose={toggleDrawer(anchor, false)}
