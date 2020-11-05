@@ -1,4 +1,7 @@
-import { QuestionType, QuestionsDispatchType } from "../actions/questionsActions";
+import {
+  QuestionType,
+  QuestionsDispatchType,
+} from "../actions/questionsActions";
 
 interface QuestionsState {
   questions: QuestionType[];
@@ -18,7 +21,7 @@ const questionsReducer = (
     case "GET_QUESTIONS":
       return state;
     case "GET_QUESTIONS_SUCCESS":
-      console.log(" action.payload", action.payload);
+      // console.log(" action.payload", action.payload);
       state = {
         ...state,
         questions: action.payload,

@@ -20,6 +20,8 @@ import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import NavbarMobile from "./NavbarMobile";
+import { useDispatch } from "react-redux";
+import { toogleMobileMenu } from "../redux/actions/uiActions";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -28,7 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
       marginBottom: theme.spacing(2),
     },
     menuButton: {
-      marginRight: theme.spacing(2),
+      marginLeft: theme.spacing(2),
     },
     title: {
       display: "none",
@@ -88,8 +90,28 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
+type Anchor = "top" | "left" | "bottom" | "right";
+
 export default function Navbar() {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const toggleDrawer = (anchor: Anchor, open: boolean) => (
+    event: React.KeyboardEvent | React.MouseEvent
+  ) => {
+    console.log(anchor, open);
+    if (
+      event &&
+      event.type === "keydown" &&
+      ((event as React.KeyboardEvent).key === "Tab" ||
+        (event as React.KeyboardEvent).key === "Shift")
+    ) {
+      return;
+    }
+
+    // setNavbarMobileState({ ...navbarMobileState, [anchor]: open });
+    dispatch(toogleMobileMenu(anchor, open));
+  };
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [
@@ -178,16 +200,8 @@ export default function Navbar() {
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
+            poznaj-egzamin.pl
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
@@ -236,6 +250,16 @@ export default function Navbar() {
               <MoreIcon />
             </IconButton>
           </div>
+
+          <IconButton
+            edge="end"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="open drawer"
+            onClick={toggleDrawer("right", true)}
+          >
+            <MenuIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
       {renderMobileMenu}

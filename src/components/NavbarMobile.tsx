@@ -13,6 +13,8 @@ import MailIcon from "@material-ui/icons/Mail";
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../redux/store/store";
 import { toogleMobileMenu } from "../redux/actions/uiActions";
+import { label, topMenuSideLinks } from "../settings/settings";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   list: {
@@ -28,20 +30,21 @@ type Anchor = "top" | "left" | "bottom" | "right";
 function SwipeableTemporaryDrawer() {
   const classes = useStyles();
 
-  const { uiReducer } = useSelector((state: State) => state);
+  const { navbarMobileState } = useSelector((state: State) => state.uiReducer);
   const dispatch = useDispatch();
-  // console.log(uiReducer);
+  console.log("state", navbarMobileState);
 
-  const [navbarMobileState, setNavbarMobileState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  });
+  // const [navbarMobileState, setNavbarMobileState] = React.useState({
+  //   top: false,
+  //   left: false,
+  //   bottom: false,
+  //   right: false,
+  // });
 
   const toggleDrawer = (anchor: Anchor, open: boolean) => (
     event: React.KeyboardEvent | React.MouseEvent
   ) => {
+    console.log(anchor, open);
     if (
       event &&
       event.type === "keydown" &&
@@ -51,7 +54,8 @@ function SwipeableTemporaryDrawer() {
       return;
     }
 
-    setNavbarMobileState({ ...navbarMobileState, [anchor]: open });
+    // setNavbarMobileState({ ...navbarMobileState, [anchor]: open });
+
     dispatch(toogleMobileMenu(anchor, open));
   };
 
@@ -65,32 +69,29 @@ function SwipeableTemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        {console.log(topMenuSideLinks)}
+
+        {topMenuSideLinks.map((item) => {
+          return (
+            <>
+              {item === "divider" ? (
+                <Divider />
+              ) : (
+                <ListItem button component={Link} to={(label as any)[item].url}>
+                  <ListItemIcon>{(label as any)[item].icon}</ListItemIcon>
+                  <ListItemText primary={(label as any)[item].text} />
+                </ListItem>
+              )}
+            </>
+          );
+        })}
       </List>
     </div>
   );
 
   return (
     <div>
-      {JSON.stringify(uiReducer)}
+      {JSON.stringify(navbarMobileState)}
       {(["left", "right", "top", "bottom"] as Anchor[]).map((anchor) => (
         <React.Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
