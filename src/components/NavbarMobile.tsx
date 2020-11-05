@@ -1,7 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
@@ -10,6 +10,9 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
+import { useDispatch, useSelector } from "react-redux";
+import { State } from "../redux/store/store";
+import { toogleMobileMenu } from "../redux/actions/uiActions";
 
 const useStyles = makeStyles({
   list: {
@@ -22,19 +25,25 @@ const useStyles = makeStyles({
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
-export default function NavbarMobile() {
+function SwipeableTemporaryDrawer() {
   const classes = useStyles();
-  const [state, setState] = React.useState({
+
+  const { uiReducer } = useSelector((state: State) => state);
+  const dispatch = useDispatch();
+  // console.log(uiReducer);
+
+  const [navbarMobileState, setNavbarMobileState] = React.useState({
     top: false,
     left: false,
     bottom: false,
-    right: true,
+    right: false,
   });
 
   const toggleDrawer = (anchor: Anchor, open: boolean) => (
     event: React.KeyboardEvent | React.MouseEvent
   ) => {
     if (
+      event &&
       event.type === "keydown" &&
       ((event as React.KeyboardEvent).key === "Tab" ||
         (event as React.KeyboardEvent).key === "Shift")
@@ -42,7 +51,8 @@ export default function NavbarMobile() {
       return;
     }
 
-    setState({ ...state, [anchor]: open });
+    setNavbarMobileState({ ...navbarMobileState, [anchor]: open });
+    dispatch(toogleMobileMenu(anchor, open));
   };
 
   const list = (anchor: Anchor) => (
@@ -80,18 +90,24 @@ export default function NavbarMobile() {
 
   return (
     <div>
+      {JSON.stringify(uiReducer)}
       {(["left", "right", "top", "bottom"] as Anchor[]).map((anchor) => (
         <React.Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
-          <Drawer
+          <SwipeableDrawer
             anchor={anchor}
-            open={state[anchor]}
+            open={navbarMobileState[anchor]}
             onClose={toggleDrawer(anchor, false)}
+            onOpen={toggleDrawer(anchor, true)}
           >
             {list(anchor)}
-          </Drawer>
+          </SwipeableDrawer>
         </React.Fragment>
       ))}
     </div>
   );
 }
+
+const NavbarMobile = () => <SwipeableTemporaryDrawer />;
+
+export default NavbarMobile;

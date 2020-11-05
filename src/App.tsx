@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import NavbarMobile from "./components/NavbarMobile";
+
 import Exams95 from "./pages/Exams95";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -20,6 +22,7 @@ function App() {
     <>
       <Router>
         <Navbar />
+        {/* <NavbarMobile /> */}
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path={label.login.url} component={Login} />

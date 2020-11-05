@@ -1,18 +1,29 @@
+import { UiDispatchType } from "../actions/uiActions";
+
 interface UiState {
-  isMobileMenuOpen: boolean
+  navbarMobileState: {
+    top: boolean;
+    left: boolean;
+    bottom: boolean;
+    right: boolean;
+  };
 }
 
 const defaultState: UiState = {
-  isMobileMenuOpen: false
+  navbarMobileState: {
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
+  },
 };
 
-const uiReducer = (state = defaultState, action: any) => {
+const uiReducer = (state = defaultState, action: UiDispatchType) => {
   switch (action.type) {
-    case "MOBILE_MENU_OPEN":
-      // console.log(" action.payload", action.payload);
+    case "TOOGLE_MOBILE_MENU":
+      console.log(action);
       state = {
         ...state,
-        isMobileMenuOpen: true,
       };
       return state;
     default:
