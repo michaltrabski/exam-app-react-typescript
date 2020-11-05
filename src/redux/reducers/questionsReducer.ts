@@ -1,4 +1,4 @@
-import { QuestionType, QuestionsDispatchType } from "../actions/questionsTypes";
+import { QuestionType, QuestionsDispatchType } from "../actions/questionsActions";
 
 interface QuestionsState {
   questions: QuestionType[];

@@ -1,5 +1,22 @@
 import { Dispatch } from "react";
-import { QuestionType, QuestionsDispatchType } from "./questionsTypes";
+
+
+export type QuestionType = {
+  text: string;
+  a: string;
+  b: string;
+  c: string;
+  media: string;
+};
+
+export type QuestionsDispatchType =
+  | { type: "GET_QUESTIONS" }
+  | {
+      type: "GET_QUESTIONS_SUCCESS";
+      payload: QuestionType[];
+    };
+
+
 
 const question1: QuestionType = {
   text: "Pytanie 1 jakies....",

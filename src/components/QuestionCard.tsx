@@ -14,7 +14,7 @@ import ProgressBar from "./ProgressBar2";
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import MyProgressBar from "./MyProgressBar";
 import QuestionAnswerOutlinedIcon from "@material-ui/icons/QuestionAnswerOutlined";
-import { QuestionType } from "../redux/actions/questionsTypes";
+import { QuestionType } from "../redux/actions/questionsActions";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
