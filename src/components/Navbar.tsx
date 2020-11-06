@@ -19,7 +19,7 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
-import NavbarMobile from "./NavbarMobile";
+import SideMenu from "./SideMenu";
 import { useDispatch } from "react-redux";
 import { toogleMobileMenu } from "../redux/actions/uiActions";
 import { Link, useHistory } from "react-router-dom";
@@ -271,7 +271,7 @@ export default function Navbar() {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
-      <NavbarMobile />
+      <SideMenu />
     </div>
   );
 }

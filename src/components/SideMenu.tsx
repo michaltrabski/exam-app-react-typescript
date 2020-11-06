@@ -13,7 +13,7 @@ import MailIcon from "@material-ui/icons/Mail";
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../redux/store/store";
 import { toogleMobileMenu } from "../redux/actions/uiActions";
-import { label, topMenuSideLinks } from "../settings/settings";
+import { sideMenuLinks } from "../settings/settings";
 import { Link } from "react-router-dom";
 import { IconButton, Theme } from "@material-ui/core";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
@@ -76,22 +76,18 @@ function SwipeableTemporaryDrawer() {
       <Divider />
 
       <List>
-        {console.log(topMenuSideLinks)}
-
-        {topMenuSideLinks.map((item) => {
-          return (
-            <>
-              {item === "divider" ? (
-                <Divider />
-              ) : (
-                <ListItem button component={Link} to={(label as any)[item].url}>
-                  <ListItemIcon>{(label as any)[item].icon}</ListItemIcon>
-                  <ListItemText primary={(label as any)[item].text} />
-                </ListItem>
-              )}
-            </>
-          );
-        })}
+        {sideMenuLinks.map((item) => (
+          <>
+            {item === "divider" ? (
+              <Divider />
+            ) : (
+              <ListItem button component={Link} to={(item as any).url}>
+                <ListItemIcon>{(item as any).icon}</ListItemIcon>
+                <ListItemText primary={(item as any).text.pl} />
+              </ListItem>
+            )}
+          </>
+        ))}
       </List>
     </div>
   );
@@ -116,6 +112,6 @@ function SwipeableTemporaryDrawer() {
   );
 }
 
-const NavbarMobile = () => <SwipeableTemporaryDrawer />;
+const SideMenu = () => <SwipeableTemporaryDrawer />;
 
-export default NavbarMobile;
+export default SideMenu;

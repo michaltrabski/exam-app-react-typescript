@@ -6,9 +6,12 @@ import LinearProgress, {
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { Button } from "@material-ui/core";
-import { label } from "../settings/settings";
+// import { label } from "../settings/settings";
 import { green, red } from "@material-ui/core/colors";
 import classes from "*.module.css";
+import { label } from "../settings/settings";
+import { useSelector } from "react-redux";
+import { State } from "../redux/store/store";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -37,12 +40,16 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 const MyProgressBar = () => {
   const classes = useStyles();
+  const { lang } = useSelector((state: State) => state.uiReducer);
+
+  console.log(lang);
+
   return (
     <Box display="flex" alignItems="center" className={classes.root}>
       <Box>
         <Box mr={1}>
           <Button variant="contained" size="small">
-            {label.startVideo}
+            {label.startVideo[lang]}
           </Button>
         </Box>
       </Box>

@@ -3,39 +3,48 @@ import HomeIcon from "@material-ui/icons/Home";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
 import SchoolIcon from "@material-ui/icons/School";
+import DescriptionIcon from "@material-ui/icons/Description";
 
 export const fadeDuration = 200;
 
 export const MEDIA_URl = "https://poznaj-testy.hekko24.pl/pytania/";
 
+type Lang = { pl: string; en: string; de: string };
+
 export const label = {
-  home: {
-    text: "Home",
+  topMenuHome: {
+    text: { pl: "Strona główna", en: "Home", de: "Hause" },
     url: "/",
     icon: <HomeIcon />,
   },
-  startVideo: "Start",
-  login: {
-    text: "Logowanie",
+  topMenuLogin: {
+    text: { pl: "Logowanie", en: "Login", de: "Loginen" },
     url: "/logowanie",
     icon: <LockOutlinedIcon />,
   },
-  register: {
-    text: "Rejestracja",
+  topMenuRegister: {
+    text: { pl: "Rejestracja" },
     url: "/rejestracja",
     icon: <GroupAddIcon />,
   },
-  exams95: {
-    text: "95 egzaminów",
+  topMenuExam: {
+    text: { pl: "Egzamin" },
+    url: "/egzamin",
+    icon: <DescriptionIcon />,
+  },
+  topMenuExam95: {
+    text: { pl: "95 zestawów egzaminacyjnych" },
     url: "/95-zestawow-egzaminacyjnych",
     icon: <SchoolIcon />,
   },
+  startVideo: { pl: "Start", en: "Play", de: "Playen" },
 };
 
-export const topMenuSideLinks = [
-  "home",
-  "exams95",
+export const sideMenuLinks = [
+  label.topMenuHome,
+  label.topMenuExam,
+  label.topMenuExam95,
   "divider",
-  "login",
-  "register",
+  label.topMenuLogin,
+  label.topMenuRegister,
 ];

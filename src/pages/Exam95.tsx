@@ -1,11 +1,11 @@
-import { Box, Button, Grid, Typography } from "@material-ui/core";
+import { Box, Button, Divider, Grid, Typography } from "@material-ui/core";
 import React from "react";
 import { useSelector } from "react-redux";
 import PageWrapper from "../components/PageWrapper";
 import { State } from "../redux/store/store";
 import SchoolIcon from "@material-ui/icons/School";
 
-function Exams95() {
+function Exam95() {
   const x = useSelector((state: State) => state);
   const arr95 = Array(95).fill("exam");
   console.log(arr95);
@@ -21,22 +21,25 @@ function Exams95() {
             Kliknij wybrany egzamin by rozpocząć test.
           </Typography>
           {arr95.map((exam, index) => (
-            <Box mb={2}>
-              <Box component="span" mr={2}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  // className={classes.button}
-                  startIcon={<SchoolIcon />}
-                  size="large"
-                >
-                  Egxamin nr {index + 1}
-                </Button>
-              </Box>
+            <Box mb={1}>
+              <Box mb={3}>
+                <Box component="span" mr={2}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    // className={classes.button}
+                    startIcon={<SchoolIcon />}
+                    size="large"
+                  >
+                    Egxamin nr {index + 1}
+                  </Button>
+                </Box>
 
-              <Typography variant="body1" component="span" gutterBottom>
-                Rozpocznij egzamin.
-              </Typography>
+                <Typography variant="body1" component="span" gutterBottom>
+                  Rozpocznij egzamin.
+                </Typography>
+              </Box>
+              <Divider />
             </Box>
           ))}
         </Grid>
@@ -45,4 +48,4 @@ function Exams95() {
   );
 }
 
-export default Exams95;
+export default Exam95;

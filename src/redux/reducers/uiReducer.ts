@@ -7,6 +7,7 @@ interface UiState {
     bottom: boolean;
     right: boolean;
   };
+  lang: "pl" | "en" | "de";
 }
 
 const defaultState: UiState = {
@@ -16,6 +17,7 @@ const defaultState: UiState = {
     bottom: false,
     right: false,
   },
+  lang: "pl",
 };
 
 const uiReducer = (state = defaultState, action: UiDispatchType) => {
