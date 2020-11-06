@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -15,6 +15,7 @@ import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import MyProgressBar from "./MyProgressBar";
 import QuestionAnswerOutlinedIcon from "@material-ui/icons/QuestionAnswerOutlined";
 import { QuestionType } from "../redux/actions/questionsActions";
+import CircleProgress from "./CircleProgress";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -38,10 +39,17 @@ type Props = {
 };
 const QuestionCard = (props: Props) => {
   const classes = useStyles();
+  // const [mediaLoaded, setMediaLoaded] = useState(false);
+
+  // console.log("QuestionCard", mediaLoaded);
   const { question, nextQuestion } = props;
 
   const isVideo = question.media.includes(".mp4");
 
+  // useEffect(() => {
+  //   console.log("useEffect");
+  //   setMediaLoaded(false);
+  // });
   return (
     <>
       <MyProgressBar />
@@ -54,7 +62,12 @@ const QuestionCard = (props: Props) => {
             image={MEDIA_URl + question.media}
             title="video or image title"
             controls={isVideo}
+            onLoad={() => {
+              // console.log("wideo loaded");
+              // setMediaLoaded(true);
+            }}
           />
+          {/* {mediaLoaded ? <></> : <CircleProgress />} */}
         </CardActionArea>
 
         <CardActions>

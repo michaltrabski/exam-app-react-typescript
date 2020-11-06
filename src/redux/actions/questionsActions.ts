@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-
+import { questions } from "../../data/questions.json";
 
 export type QuestionType = {
   text: string;
@@ -16,30 +16,13 @@ export type QuestionsDispatchType =
       payload: QuestionType[];
     };
 
-
-
-const question1: QuestionType = {
-  text: "Pytanie 1 jakies....",
-  a: "",
-  b: "",
-  c: "",
-  media: "D26_015org.jpg"
-};
-const question2: QuestionType = {
-  text: "Pytanie 2 inne...",
-  a: "odp a.",
-  b: "odp b.",
-  c: "odp c.",
-  media: "1472D14MMorg.jpg"
-};
-
-const question3: QuestionType = {
-  text: "Pytanie 3 inne...",
-  a: "odp a. asfd",
-  b: "odp b. sdf s",
-  c: "odp c. sdf ",
-  media: "4011.mp4"
-};
+// const question1: QuestionType = {
+//   text: "Pytanie 1 jakies....",
+//   a: "",
+//   b: "",
+//   c: "",
+//   media: "D26_015org.jpg",
+// };
 
 export const getQuestions = () => async (
   dispatch: Dispatch<QuestionsDispatchType>
@@ -51,7 +34,7 @@ export const getQuestions = () => async (
       // console.log("getQuestions fired");
       dispatch({
         type: "GET_QUESTIONS_SUCCESS",
-        payload: [question1, question2, question3],
+        payload: questions,
       });
     }, 500);
     // const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);

@@ -2,58 +2,6 @@
   "questionsLength": 202,
   "questions": [
     {
-      "id": "id99",
-      "slug": "czy-w-tej-sytuacji-masz-obowiazek-zatrzymac-pojazd-id-pytania-99",
-      "text": "Czy w tej sytuacji masz obowiązek zatrzymać pojazd?",
-      "media": "AK_D05_06_org.mp4",
-      "isMedia": true,
-      "correctAnswer": "t",
-      "a": "",
-      "b": "",
-      "c": "",
-      "cats": ["a", "b", "c", "d", "t", "am", "a1", "a2", "b1", "c1", "d1"],
-      "topicId": "znaki drogowe"
-    },
-    {
-      "id": "id100",
-      "slug": "czy-w-tej-sytuacji-masz-obowiazek-zatrzymac-pojazd-id-pytania-100",
-      "text": "Czy w tej sytuacji masz obowiązek zatrzymać pojazd?",
-      "media": "AK_D10_30_org.mp4",
-      "isMedia": true,
-      "correctAnswer": "t",
-      "a": "",
-      "b": "",
-      "c": "",
-      "cats": ["a", "b", "c", "d", "t", "am", "a1", "a2", "b1", "c1", "d1"],
-      "topicId": "znaki drogowe"
-    },
-    {
-      "id": "id109",
-      "slug": "czy-w-przedstawionej-sytuacji-masz-prawo-kontynuowac-jazde-id-pytania-109",
-      "text": "Czy w przedstawionej sytuacji masz prawo kontynuować jazdę?",
-      "media": "AK_D11_43org.mp4",
-      "isMedia": true,
-      "correctAnswer": "n",
-      "a": "",
-      "b": "",
-      "c": "",
-      "cats": ["a", "b", "c", "d", "t", "am", "a1", "a2", "b1", "c1", "d1"],
-      "topicId": "znaki drogowe"
-    },
-    {
-      "id": "id110",
-      "slug": "czy-w-przedstawionej-sytuacji-masz-prawo-mimo-podawanego-sygnalu-skrecic-w-prawo-id-pytania-110",
-      "text": "Czy w przedstawionej sytuacji masz prawo - mimo podawanego sygnału - skręcić w prawo?",
-      "media": "AK_D11_45org.mp4",
-      "isMedia": true,
-      "correctAnswer": "n",
-      "a": "",
-      "b": "",
-      "c": "",
-      "cats": ["a", "b", "c", "d", "t", "am", "a1", "a2", "b1", "c1", "d1"],
-      "topicId": "znaki drogowe"
-    },
-    {
       "id": "id290",
       "slug": "jaka-odleglosc-nalezy-zachowac-miedzy-jadacymi-kolumnami-samochodow-ciezarowych-id-pytania-290",
       "text": "Jaką odległość należy zachować między jadącymi kolumnami samochodów ciężarowych?",

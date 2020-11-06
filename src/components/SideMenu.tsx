@@ -69,7 +69,7 @@ function SwipeableTemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <div className={classes.drawerHeader}>
-        <IconButton onClick={() => console.log("clicked")}>
+        <IconButton>
           <ChevronRightIcon />
         </IconButton>
       </div>

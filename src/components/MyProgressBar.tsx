@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
       position: "relative",
     },
     progressBarGreen: {
-      height: 18,
+      height: 20,
       width: "37%",
       backgroundColor: green[500],
     },
@@ -42,7 +42,7 @@ const MyProgressBar = () => {
   const classes = useStyles();
   const { lang } = useSelector((state: State) => state.uiReducer);
 
-  console.log(lang);
+  // console.log(lang);
 
   return (
     <Box display="flex" alignItems="center" className={classes.root}>
