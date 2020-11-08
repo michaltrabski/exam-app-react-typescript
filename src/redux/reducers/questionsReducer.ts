@@ -5,12 +5,14 @@ import {
 
 interface QuestionsState {
   questions: QuestionType[];
-  id: string;
+  exam: QuestionType[];
+  index: number; // current exm question
 }
 
 const defaultState: QuestionsState = {
   questions: [],
-  id: "id123",
+  exam: [],
+  index: 0,
 };
 
 const questionsReducer = (
@@ -25,6 +27,13 @@ const questionsReducer = (
       state = {
         ...state,
         questions: action.payload,
+      };
+      return state;
+    case "GET_RANDOM_EXAM":
+      // console.log(" action.payload", action.payload);
+      state = {
+        ...state,
+        exam: action.payload,
       };
       return state;
     default:

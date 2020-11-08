@@ -14,15 +14,8 @@ export type QuestionsDispatchType =
   | {
       type: "GET_QUESTIONS_SUCCESS";
       payload: QuestionType[];
-    };
-
-// const question1: QuestionType = {
-//   text: "Pytanie 1 jakies....",
-//   a: "",
-//   b: "",
-//   c: "",
-//   media: "D26_015org.jpg",
-// };
+    }
+  | { type: "GET_RANDOM_EXAM"; payload: QuestionType[] };
 
 export const getQuestions = () => async (
   dispatch: Dispatch<QuestionsDispatchType>
@@ -45,4 +38,13 @@ export const getQuestions = () => async (
     console.log("err = ", err);
     // dispatch({ type: POKEMON_FAIL });
   }
+};
+
+export const getRandomExam = (exam: QuestionType[]) => (
+  dispatch: Dispatch<QuestionsDispatchType>
+) => {
+  dispatch({
+    type: "GET_RANDOM_EXAM",
+    payload: exam,
+  });
 };
