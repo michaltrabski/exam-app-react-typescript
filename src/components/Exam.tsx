@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
@@ -27,26 +27,25 @@ import { getRandomExam } from "../redux/actions/questionsActions";
 export default function Exam() {
   //   const classes = useStyles();
   const dispatch = useDispatch();
-  const { questions, exam, index } = useSelector(
+  const { questions, exam, cat, index } = useSelector(
     (state: State) => state.questionsReducer
   );
 
   const question = exam[index];
 
-  const nextQuestion = () => {};
-
   const handleRandomExam = () => {
-    const newExam = randomExam(questions);
-    console.log(newExam);
+    const newExam = randomExam(questions, cat);
+    // console.log(newExam);
     dispatch(getRandomExam(newExam));
   };
 
+  useEffect(() => {});
   return (
     <Grid item xs={12}>
       {/* Rozpocznij egzamin */}
       {exam.length > 0 ? (
         <>
-          <QuestionCard question={question} nextQuestion={nextQuestion} />
+          <QuestionCard question={question} />
         </>
       ) : (
         <>

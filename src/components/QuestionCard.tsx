@@ -14,8 +14,9 @@ import ProgressBar from "./ProgressBar2";
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import MyProgressBar from "./MyProgressBar";
 import QuestionAnswerOutlinedIcon from "@material-ui/icons/QuestionAnswerOutlined";
-import { QuestionType } from "../redux/actions/questionsActions";
+import { nextQuestion, QuestionType } from "../redux/actions/questionsActions";
 import CircleProgress from "./CircleProgress";
+import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -35,21 +36,18 @@ const useStyles = makeStyles((theme: Theme) =>
 
 type Props = {
   question: QuestionType;
-  nextQuestion: () => void;
 };
 const QuestionCard = (props: Props) => {
   const classes = useStyles();
-  // const [mediaLoaded, setMediaLoaded] = useState(false);
-
+  const dispatch = useDispatch();
   // console.log("QuestionCard", mediaLoaded);
-  const { question, nextQuestion } = props;
+  const { question } = props;
 
   const isVideo = question.media.includes(".mp4");
 
-  // useEffect(() => {
-  //   console.log("useEffect");
-  //   setMediaLoaded(false);
-  // });
+  const handleNextQuestion = () => {
+    dispatch(nextQuestion());
+  };
   return (
     <>
       <MyProgressBar />
@@ -91,7 +89,7 @@ const QuestionCard = (props: Props) => {
             fullWidth
             size="large"
             endIcon={<ArrowRightAltIcon />}
-            onClick={nextQuestion}
+            onClick={handleNextQuestion}
           >
             Następne
           </Button>

@@ -23,8 +23,8 @@ const defaultState: UiState = {
 const uiReducer = (state = defaultState, action: UiDispatchType) => {
   switch (action.type) {
     case "TOOGLE_MOBILE_MENU":
-      console.log("action", action);
-      console.log("state1", state);
+      // console.log("action", action);
+      // console.log("state1", state);
       state = {
         ...state,
         navbarMobileState: {
@@ -32,7 +32,7 @@ const uiReducer = (state = defaultState, action: UiDispatchType) => {
           [action.anchor]: action.open,
         },
       };
-      console.log("state2", state);
+      // console.log("state2", state);
       return state;
     default:
       return state;

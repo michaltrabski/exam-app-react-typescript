@@ -5,12 +5,14 @@ import {
 
 interface QuestionsState {
   questions: QuestionType[];
+  cat: string;
   exam: QuestionType[];
   index: number; // current exm question
 }
 
 const defaultState: QuestionsState = {
   questions: [],
+  cat: "b",
   exam: [],
   index: 0,
 };
@@ -34,6 +36,14 @@ const questionsReducer = (
       state = {
         ...state,
         exam: action.payload,
+      };
+      return state;
+
+    case "NEXT_QUESTION":
+      // console.log(" action.payload", action.payload);
+      state = {
+        ...state,
+        index: state.index === 31 ? 31 : state.index + 1,
       };
       return state;
     default:
