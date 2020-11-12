@@ -98,7 +98,7 @@ function SwipeableTemporaryDrawer() {
         <React.Fragment key={anchor}>
           {/* <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button> */}
           <SwipeableDrawer
-            swipeAreaWidth={0}
+            swipeAreaWidth={1}
             anchor={anchor}
             open={navbarMobileState[anchor]}
             onClose={toggleDrawer(anchor, false)}

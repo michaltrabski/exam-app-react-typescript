@@ -12,6 +12,14 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { getQuestions } from "./redux/actions/questionsActions";
 import { label } from "./settings/settings";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { Paper } from "@material-ui/core";
+
+const theme = createMuiTheme({
+  palette: {
+    type: "light",
+  },
+});
 
 function App() {
   const dispatch = useDispatch();
@@ -20,20 +28,22 @@ function App() {
   }, []);
 
   return (
-    <>
-      <Router>
-        <Navbar />
+    <ThemeProvider theme={theme}>
+      <Paper>
+        <Router>
+          <Navbar />
 
-        <Switch>
-          <Route exact path={label.topMenuHome.url} component={HomePage} />
-          <Route path={label.topMenuLogin.url} component={Login} />
-          <Route path={label.topMenuRegister.url} component={Register} />
-          <Route path={label.topMenuExam95.url} component={Exam95} />
-          <Route path={label.topMenuExam.url} component={ExamPage} />
-        </Switch>
-        <Footer />
-      </Router>
-    </>
+          <Switch>
+            <Route exact path={label.topMenuHome.url} component={HomePage} />
+            <Route path={label.topMenuLogin.url} component={Login} />
+            <Route path={label.topMenuRegister.url} component={Register} />
+            <Route path={label.topMenuExam95.url} component={Exam95} />
+            <Route path={label.topMenuExam.url} component={ExamPage} />
+          </Switch>
+          <Footer />
+        </Router>
+      </Paper>
+    </ThemeProvider>
   );
 }
 

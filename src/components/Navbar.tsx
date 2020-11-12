@@ -264,17 +264,18 @@ export default function Navbar() {
                   <MoreIcon />
                 </IconButton>
               </div>
+
+              <IconButton
+                edge="end"
+                className={classes.menuButton}
+                color="inherit"
+                aria-label="open drawer"
+                onClick={toggleDrawer("right", true)}
+              >
+                <MenuIcon />
+              </IconButton>
             </>
           )}
-          <IconButton
-            edge="end"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-            onClick={toggleDrawer("right", true)}
-          >
-            <MenuIcon />
-          </IconButton>
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
