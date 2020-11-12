@@ -20,9 +20,11 @@ import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import SideMenu from "./SideMenu";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toogleMobileMenu } from "../redux/actions/uiActions";
 import { Link, useHistory } from "react-router-dom";
+import { State } from "../redux/store/store";
+import { Box, Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -88,6 +90,9 @@ const useStyles = makeStyles((theme: Theme) =>
         display: "none",
       },
     },
+    toolbar: {
+      justifyContent: "space-between",
+    },
   })
 );
 
@@ -96,6 +101,9 @@ type Anchor = "top" | "left" | "bottom" | "right";
 export default function Navbar() {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const { exam, index, cat } = useSelector(
+    (state: State) => state.questionsReducer
+  );
   const history = useHistory();
 
   const toggleDrawer = (anchor: Anchor, open: boolean) => (
@@ -201,63 +209,63 @@ export default function Navbar() {
   return (
     <div className={classes.grow}>
       <AppBar position="static">
-        <Toolbar>
-          <Typography
-            className={classes.title}
-            variant="h6"
-            noWrap
-            onClick={() => history.push("/")}
-          >
-            poznaj-egzamin.pl
-          </Typography>
-          {/* <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ "aria-label": "search" }}
-            />
-          </div> */}
-          <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-          </div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </div>
-
+        <Toolbar className={classes.toolbar}>
+          {exam.length === 32 ? (
+            <>
+              <Button color="inherit">{index + 1}/32</Button>
+              <Button color="inherit">Kat: {cat}</Button>
+              <Button color="inherit">24:59</Button>
+              <Button color="inherit">Zakończ</Button>
+            </>
+          ) : (
+            <>
+              <Typography
+                className={classes.title}
+                variant="h6"
+                noWrap
+                onClick={() => history.push("/")}
+              >
+                poznaj-egzamin.pl
+              </Typography>
+              <div className={classes.grow} />
+              <div className={classes.sectionDesktop}>
+                <IconButton aria-label="show 4 new mails" color="inherit">
+                  <Badge badgeContent={4} color="secondary">
+                    <MailIcon />
+                  </Badge>
+                </IconButton>
+                <IconButton
+                  aria-label="show 17 new notifications"
+                  color="inherit"
+                >
+                  <Badge badgeContent={17} color="secondary">
+                    <NotificationsIcon />
+                  </Badge>
+                </IconButton>
+                <IconButton
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-controls={menuId}
+                  aria-haspopup="true"
+                  onClick={handleProfileMenuOpen}
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+              </div>
+              <div className={classes.sectionMobile}>
+                <IconButton
+                  aria-label="show more"
+                  aria-controls={mobileMenuId}
+                  aria-haspopup="true"
+                  onClick={handleMobileMenuOpen}
+                  color="inherit"
+                >
+                  <MoreIcon />
+                </IconButton>
+              </div>
+            </>
+          )}
           <IconButton
             edge="end"
             className={classes.menuButton}

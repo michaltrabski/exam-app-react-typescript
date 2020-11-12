@@ -3,7 +3,7 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import QuestionCard from "./QuestionCard";
-import { Button, Container, Fade } from "@material-ui/core";
+import { Box, Button, Container, Fade } from "@material-ui/core";
 import Offer from "./Offer";
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../redux/store/store";
@@ -43,8 +43,13 @@ export default function Exam() {
   return (
     <Grid item xs={12}>
       {/* Rozpocznij egzamin */}
-      {exam.length > 0 ? (
+      {exam.length === 32 ? (
         <>
+          {/* <Box>
+            {exam.map((item, i) => (
+              <Button variant="contained">{i + 1}</Button>
+            ))}
+          </Box> */}
           <QuestionCard question={question} />
         </>
       ) : (

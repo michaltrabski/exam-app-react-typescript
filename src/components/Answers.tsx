@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
       textTransform: "none",
       marginBottom: theme.spacing(1),
       justifyContent: "flex-start",
+      textAlign: "start",
     },
     btnYesNo: {
       margin: theme.spacing(1),

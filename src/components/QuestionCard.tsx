@@ -47,6 +47,7 @@ const QuestionCard = (props: Props) => {
 
   const handleNextQuestion = () => {
     dispatch(nextQuestion());
+    window.scrollTo(0, 0);
   };
   return (
     <>
