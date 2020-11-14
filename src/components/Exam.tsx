@@ -4,65 +4,75 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import QuestionCard from "./QuestionCard";
 import { Box, Button, Container, Fade } from "@material-ui/core";
-import Offer from "./Offer";
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../redux/store/store";
-import { fadeDuration } from "../settings/settings";
 import { randomExam } from "../util/util";
-import { getRandomExam } from "../redux/actions/questionsActions";
+import { startRandomExam } from "../redux/actions/examActions";
+import { label } from "../settings/settings";
 
-// const useStyles = makeStyles((theme: Theme) =>
-//   createStyles({
-//     root: {
-//       flexGrow: 1,
-//     },
-//     paper: {
-//       padding: theme.spacing(2),
-//       textAlign: "center",
-//       color: theme.palette.text.secondary,
-//     },
-//   })
-// );
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      flexGrow: 1,
+    },
+    paper: {
+      padding: theme.spacing(2),
+      textAlign: "center",
+      color: theme.palette.text.secondary,
+    },
+    btn: {
+      marginRight: theme.spacing(1),
+      marginBottom: theme.spacing(1),
+    },
+  })
+);
 
 export default function Exam() {
-  //   const classes = useStyles();
+  const classes = useStyles();
   const dispatch = useDispatch();
-  const { questions, exam, cat, index } = useSelector(
-    (state: State) => state.questionsReducer
+  const { questions } = useSelector((state: State) => state.questionsReducer);
+  const { exam, examStatus, cat, index } = useSelector(
+    (state: State) => state.examReducer
   );
+  const { lang } = useSelector((state: State) => state.uiReducer);
 
   const question = exam[index];
 
-  const handleRandomExam = () => {
+  const handleStartRandomExam = () => {
     const newExam = randomExam(questions, cat);
-    // console.log(newExam);
-    dispatch(getRandomExam(newExam));
+    dispatch(startRandomExam(newExam));
   };
 
   useEffect(() => {});
   return (
     <Grid item xs={12}>
-      {/* Rozpocznij egzamin */}
-      {exam.length === 32 ? (
-        <>
-          {/* <Box>
-            {exam.map((item, i) => (
-              <Button variant="contained">{i + 1}</Button>
-            ))}
-          </Box> */}
-          <QuestionCard question={question} />
-        </>
-      ) : (
-        <>
-          <p>Brak egzaminu</p>
+      {(examStatus === "not_started" || examStatus === "finished") && (
+        <Box mb={3}>
           <Button
             variant="contained"
-            color="primary"
-            onClick={handleRandomExam}
+            color="secondary"
+            size="large"
+            onClick={handleStartRandomExam}
           >
-            Rozpocznij egzamin
+            {examStatus === "finished"
+              ? label.startExamAgain[lang]
+              : label.startExam[lang]}
           </Button>
-        </>
+        </Box>
+      )}
+
+      {examStatus === "finished" && (
+        <Box>
+          {exam.map((item, i) => (
+            <Button className={classes.btn} variant="contained" size="small">
+              {i + 1}
+            </Button>
+          ))}
+        </Box>
+      )}
+
+      {(examStatus === "in_progress" || examStatus === "finished") && (
+        <QuestionCard question={question} />
       )}
     </Grid>
   );

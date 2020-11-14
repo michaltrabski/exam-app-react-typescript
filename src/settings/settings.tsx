@@ -38,6 +38,16 @@ export const label = {
     icon: <SchoolIcon />,
   },
   startVideo: { pl: "Start", en: "Play", de: "Playen" },
+  startExam: {
+    pl: "Rozpocznij losowy egzamin",
+    en: "Start random exam",
+    de: "Starten egzamen",
+  },
+  startExamAgain: {
+    pl: "Rozpocznij kolejny losowy egzamin",
+    en: "Start another random exam",
+    de: "Starten egzamen",
+  },
 };
 
 export const sideMenuLinks = [

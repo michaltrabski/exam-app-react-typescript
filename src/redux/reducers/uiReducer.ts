@@ -8,6 +8,7 @@ interface UiState {
     right: boolean;
   };
   lang: "pl" | "en" | "de";
+  theme: "light" | "dark";
 }
 
 const defaultState: UiState = {
@@ -18,6 +19,7 @@ const defaultState: UiState = {
     right: false,
   },
   lang: "pl",
+  theme: "light",
 };
 
 const uiReducer = (state = defaultState, action: UiDispatchType) => {
@@ -31,6 +33,16 @@ const uiReducer = (state = defaultState, action: UiDispatchType) => {
           ...state.navbarMobileState,
           [action.anchor]: action.open,
         },
+      };
+      // console.log("state2", state);
+      return state;
+
+    case "TOOGLE_THEME":
+      // console.log("action", action);
+      // console.log("state1", state);
+      state = {
+        ...state,
+        theme: state.theme === "light" ? "dark" : "light",
       };
       // console.log("state2", state);
       return state;

@@ -5,11 +5,8 @@ import { Grid } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../redux/store/store";
 import clsx from "clsx";
-import { red } from "@material-ui/core/colors";
-import {
-  ActiveAnswer,
-  setActiveAnswer,
-} from "../redux/actions/questionsActions";
+import { setActiveAnswer } from "../redux/actions/examActions";
+import { AnswerType } from "../redux/actions/questionsActions";
 
 interface Props {
   a: string;
@@ -45,13 +42,10 @@ const useStyles = makeStyles((theme: Theme) =>
 const Answers = (props: Props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { activeAnswer } = useSelector(
-    (state: State) => state.questionsReducer
-  );
+  const { activeAnswer } = useSelector((state: State) => state.examReducer);
   const { a, b, c } = props;
-  console.log("activeAnswer", activeAnswer);
 
-  const handleAnswer = (answer: ActiveAnswer) => {
+  const handleAnswer = (answer: AnswerType) => {
     dispatch(setActiveAnswer(answer));
   };
   return (

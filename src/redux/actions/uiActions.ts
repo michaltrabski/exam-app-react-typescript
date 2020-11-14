@@ -1,8 +1,12 @@
-export type UiDispatchType = {
-  type: "TOOGLE_MOBILE_MENU";
-  anchor: string;
-  open: boolean;
-};
+export type UiDispatchType =
+  | {
+      type: "TOOGLE_MOBILE_MENU";
+      anchor: string;
+      open: boolean;
+    }
+  | {
+      type: "TOOGLE_THEME";
+    };
 
 export const toogleMobileMenu = (
   anchor: string,
@@ -11,4 +15,8 @@ export const toogleMobileMenu = (
   type: "TOOGLE_MOBILE_MENU",
   anchor,
   open,
+});
+
+export const toogleTheme = (): UiDispatchType => ({
+  type: "TOOGLE_THEME",
 });

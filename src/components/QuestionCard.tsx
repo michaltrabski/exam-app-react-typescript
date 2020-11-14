@@ -14,9 +14,11 @@ import ProgressBar from "./ProgressBar2";
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import MyProgressBar from "./MyProgressBar";
 import QuestionAnswerOutlinedIcon from "@material-ui/icons/QuestionAnswerOutlined";
-import { nextQuestion, QuestionType } from "../redux/actions/questionsActions";
+import { QuestionType } from "../redux/actions/questionsActions";
 import CircleProgress from "./CircleProgress";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { endExam, nextQuestion } from "../redux/actions/examActions";
+import { State } from "../redux/store/store";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -40,13 +42,19 @@ type Props = {
 const QuestionCard = (props: Props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  // console.log("QuestionCard", mediaLoaded);
+  const { index } = useSelector((state: State) => state.examReducer);
+
   const { question } = props;
 
   const isVideo = question.media.includes(".mp4");
 
   const handleNextQuestion = () => {
-    dispatch(nextQuestion());
+    if (index === 31) {
+      dispatch(endExam());
+    } else {
+      dispatch(nextQuestion());
+    }
+
     window.scrollTo(0, 0);
   };
   return (

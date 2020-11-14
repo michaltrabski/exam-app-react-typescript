@@ -25,6 +25,7 @@ import { toogleMobileMenu } from "../redux/actions/uiActions";
 import { Link, useHistory } from "react-router-dom";
 import { State } from "../redux/store/store";
 import { Box, Button } from "@material-ui/core";
+import { endExam } from "../redux/actions/examActions";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -101,8 +102,8 @@ type Anchor = "top" | "left" | "bottom" | "right";
 export default function Navbar() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { exam, index, cat } = useSelector(
-    (state: State) => state.questionsReducer
+  const { exam, examStatus, index, cat } = useSelector(
+    (state: State) => state.examReducer
   );
   const history = useHistory();
 
@@ -210,12 +211,14 @@ export default function Navbar() {
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar className={classes.toolbar}>
-          {exam.length === 32 ? (
+          {examStatus === "in_progress" ? (
             <>
               <Button color="inherit">{index + 1}/32</Button>
               <Button color="inherit">Kat: {cat}</Button>
               <Button color="inherit">24:59</Button>
-              <Button color="inherit">Zakończ</Button>
+              <Button color="inherit" onClick={() => dispatch(endExam())}>
+                Zakończ
+              </Button>
             </>
           ) : (
             <>
