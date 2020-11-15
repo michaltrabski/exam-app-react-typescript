@@ -9,6 +9,8 @@ import { State } from "../redux/store/store";
 import { randomExam } from "../util/util";
 import { startRandomExam } from "../redux/actions/examActions";
 import { label } from "../settings/settings";
+import clsx from "clsx";
+import { green, red } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -23,6 +25,21 @@ const useStyles = makeStyles((theme: Theme) =>
     btn: {
       marginRight: theme.spacing(1),
       marginBottom: theme.spacing(1),
+      minWidth: "50px",
+    },
+    success: {
+      color: theme.palette.getContrastText(green[500]),
+      backgroundColor: green[500],
+      "&:hover": {
+        backgroundColor: green[700],
+      },
+    },
+    danger: {
+      color: theme.palette.getContrastText(red[500]),
+      backgroundColor: red[500],
+      "&:hover": {
+        backgroundColor: red[700],
+      },
     },
   })
 );
@@ -46,27 +63,22 @@ export default function Exam() {
   useEffect(() => {});
   return (
     <Grid item xs={12}>
-      {(examStatus === "not_started" || examStatus === "finished") && (
-        <Box mb={3}>
-          <Button
-            variant="contained"
-            color="secondary"
-            size="large"
-            onClick={handleStartRandomExam}
-          >
-            {examStatus === "finished"
-              ? label.startExamAgain[lang]
-              : label.startExam[lang]}
-          </Button>
-        </Box>
-      )}
-
       {examStatus === "finished" && (
         <Box>
           {exam.map((item, i) => (
-            <Button className={classes.btn} variant="contained" size="small">
-              {i + 1}{" "}
-              {JSON.stringify(exam[i].userAnswer === exam[i].correctAnswer)}
+            <Button
+              className={clsx(
+                classes.btn,
+                classes[
+                  exam[i].correctAnswer === exam[i].userAnswer
+                    ? "success"
+                    : "danger"
+                ]
+              )}
+              variant="contained"
+              size="small"
+            >
+              {i + 1}
             </Button>
           ))}
         </Box>
@@ -74,6 +86,22 @@ export default function Exam() {
 
       {(examStatus === "in_progress" || examStatus === "finished") && (
         <QuestionCard question={question} />
+      )}
+
+      {(examStatus === "not_started" || examStatus === "finished") && (
+        <Box mb={3}>
+          <Button
+            variant="contained"
+            color="secondary"
+            size="large"
+            onClick={handleStartRandomExam}
+            fullWidth
+          >
+            {examStatus === "finished"
+              ? label.startExamAgain[lang]
+              : label.startExam[lang]}
+          </Button>
+        </Box>
       )}
     </Grid>
   );

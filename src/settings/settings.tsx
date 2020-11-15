@@ -43,9 +43,19 @@ export const label = {
     en: "Start random exam",
     de: "Starten egzamen",
   },
+  endExam: {
+    pl: "Zakończ",
+    en: "End",
+    de: "Starten egzamen",
+  },
   startExamAgain: {
     pl: "Rozpocznij kolejny losowy egzamin",
     en: "Start another random exam",
+    de: "Starten egzamen",
+  },
+  nextQuestion: {
+    pl: "Następne",
+    en: "Next",
     de: "Starten egzamen",
   },
 };

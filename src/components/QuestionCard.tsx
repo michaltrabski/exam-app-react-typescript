@@ -7,7 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { MEDIA_URl } from "../settings/settings";
+import { label, MEDIA_URl } from "../settings/settings";
 import Answers from "./Answers";
 import { Grid, IconButton } from "@material-ui/core";
 import ProgressBar from "./ProgressBar2";
@@ -42,8 +42,10 @@ type Props = {
 const QuestionCard = (props: Props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { index } = useSelector((state: State) => state.examReducer);
-
+  const { index, examStatus } = useSelector(
+    (state: State) => state.examReducer
+  );
+  const { lang } = useSelector((state: State) => state.uiReducer);
   const { question } = props;
 
   const isVideo = question.media.includes(".mp4");
@@ -59,7 +61,7 @@ const QuestionCard = (props: Props) => {
   };
   return (
     <>
-      <MyProgressBar />
+      {examStatus === "in_progress" && <MyProgressBar />}
 
       <Card className={classes.root}>
         <CardActionArea>
@@ -84,25 +86,27 @@ const QuestionCard = (props: Props) => {
             component="h2"
             className={classes.questionText}
           >
-            {question.text}
+            {index + 1}) {question.text}
           </Typography>
         </CardActions>
         <CardActions>
           <Answers a={question.a} b={question.b} c={question.c} />
         </CardActions>
 
-        <CardActions>
-          <Button
-            variant="contained"
-            color="primary"
-            fullWidth
-            size="large"
-            endIcon={<ArrowRightAltIcon />}
-            onClick={handleNextQuestion}
-          >
-            Następne
-          </Button>
-        </CardActions>
+        {examStatus === "in_progress" && (
+          <CardActions>
+            <Button
+              variant="contained"
+              color="primary"
+              fullWidth
+              size="large"
+              endIcon={index === 31 || <ArrowRightAltIcon />}
+              onClick={handleNextQuestion}
+            >
+              {index === 31 ? label.endExam[lang] : label.nextQuestion[lang]}
+            </Button>
+          </CardActions>
+        )}
 
         {/* <CardActions>
           <Button size="small" color="primary">

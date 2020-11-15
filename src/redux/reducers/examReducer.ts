@@ -10,7 +10,7 @@ interface ExamState {
   result: number;
 }
 
-const qnr = 30;
+const qnr = 14;
 const defaultState: ExamState = {
   cat: "b",
   exam: [],
