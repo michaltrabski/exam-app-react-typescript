@@ -65,7 +65,8 @@ export default function Exam() {
         <Box>
           {exam.map((item, i) => (
             <Button className={classes.btn} variant="contained" size="small">
-              {i + 1}
+              {i + 1}{" "}
+              {JSON.stringify(exam[i].userAnswer === exam[i].correctAnswer)}
             </Button>
           ))}
         </Box>

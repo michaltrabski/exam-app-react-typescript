@@ -17,6 +17,8 @@ import { sideMenuLinks } from "../settings/settings";
 import { Link } from "react-router-dom";
 import { IconButton, Theme } from "@material-ui/core";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import MySwitch from "./MySwitch";
+import SettingsBrightnessIcon from "@material-ui/icons/SettingsBrightness";
 
 const useStyles = makeStyles((theme: Theme) => ({
   list: {
@@ -88,7 +90,17 @@ function SwipeableTemporaryDrawer() {
             )}
           </>
         ))}
+
+        <Divider />
+
+        <ListItem button>
+          <ListItemIcon>
+            <SettingsBrightnessIcon />
+          </ListItemIcon>
+          <ListItemText primary={"Ciemne Tło"} />
+        </ListItem>
       </List>
+      {/* <MySwitch /> */}
     </div>
   );
 

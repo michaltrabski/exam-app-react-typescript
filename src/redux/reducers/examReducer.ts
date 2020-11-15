@@ -63,8 +63,13 @@ const examReducer = (
     case "USER_GIVE_ANSWER":
       state = {
         ...state,
-        result: state.result + action.score,
+        exam: state.exam.map((item, index) => {
+          const newItem = { ...item };
+          if (index === action.index) newItem.userAnswer = action.answer;
+          return newItem;
+        }),
       };
+      console.log("2", state.exam);
       return state;
 
     default:

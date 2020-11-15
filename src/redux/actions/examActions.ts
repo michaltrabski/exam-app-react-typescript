@@ -5,7 +5,7 @@ export type ExamDispatchType =
   | { type: "END_EXAM" }
   | { type: "NEXT_QUESTION" }
   | { type: "SET_ACTIVE_ANSWER"; answer: AnswerType }
-  | { type: "USER_GIVE_ANSWER"; score: number };
+  | { type: "USER_GIVE_ANSWER"; answer: AnswerType; index: number };
 
 export const startRandomExam = (exam: QuestionType[]): ExamDispatchType => {
   return {
@@ -28,6 +28,9 @@ export const setActiveAnswer = (answer: AnswerType): ExamDispatchType => {
   return { type: "SET_ACTIVE_ANSWER", answer };
 };
 
-export const userGiveAnswer = (score: number): ExamDispatchType => {
-  return { type: "USER_GIVE_ANSWER", score };
+export const userGiveAnswer = (
+  answer: AnswerType,
+  index: number
+): ExamDispatchType => {
+  return { type: "USER_GIVE_ANSWER", answer, index };
 };

@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { questions } from "../../data/questions.json";
+import json from "../../data/questions.json";
 
 export type AnswerType = "t" | "n" | "a" | "b" | "c";
 
@@ -22,6 +22,8 @@ export type QuestionsDispatchType =
       type: "GET_QUESTIONS_SUCCESS";
       payload: QuestionType[];
     };
+
+const questions: QuestionType[] = json.questions;
 
 export const getQuestions = () => async (
   dispatch: Dispatch<QuestionsDispatchType>

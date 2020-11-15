@@ -5,7 +5,7 @@ import { Grid } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../redux/store/store";
 import clsx from "clsx";
-import { setActiveAnswer } from "../redux/actions/examActions";
+import { setActiveAnswer, userGiveAnswer } from "../redux/actions/examActions";
 import { AnswerType } from "../redux/actions/questionsActions";
 
 interface Props {
@@ -42,11 +42,14 @@ const useStyles = makeStyles((theme: Theme) =>
 const Answers = (props: Props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { activeAnswer } = useSelector((state: State) => state.examReducer);
+  const { activeAnswer, examStatus, index } = useSelector(
+    (state: State) => state.examReducer
+  );
   const { a, b, c } = props;
 
-  const handleAnswer = (answer: AnswerType) => {
+  const handleAnswer = (answer: AnswerType, index: number) => {
     dispatch(setActiveAnswer(answer));
+    if (examStatus === "in_progress") dispatch(userGiveAnswer(answer, index));
   };
   return (
     <Grid container justify={"center"}>
@@ -59,7 +62,7 @@ const Answers = (props: Props) => {
             )}
             variant="contained"
             fullWidth
-            onClick={() => handleAnswer("a")}
+            onClick={() => handleAnswer("a", index)}
           >
             A) {a}
           </Button>
@@ -70,7 +73,7 @@ const Answers = (props: Props) => {
             )}
             variant="contained"
             fullWidth
-            onClick={() => handleAnswer("b")}
+            onClick={() => handleAnswer("b", index)}
           >
             B) {b}
           </Button>
@@ -81,7 +84,7 @@ const Answers = (props: Props) => {
             )}
             variant="contained"
             fullWidth
-            onClick={() => handleAnswer("c")}
+            onClick={() => handleAnswer("c", index)}
           >
             C) {c}
           </Button>
@@ -95,7 +98,7 @@ const Answers = (props: Props) => {
             )}
             variant="contained"
             size="large"
-            onClick={() => handleAnswer("t")}
+            onClick={() => handleAnswer("t", index)}
           >
             Tak
           </Button>
@@ -106,7 +109,7 @@ const Answers = (props: Props) => {
             )}
             variant="contained"
             size="large"
-            onClick={() => handleAnswer("n")}
+            onClick={() => handleAnswer("n", index)}
           >
             Nie
           </Button>
