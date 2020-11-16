@@ -36,11 +36,16 @@ const examReducer = (
       return state;
 
     case "END_EXAM":
-      // console.log(" action.payload", action.payload);
+      // console.log("1", action);
       state = {
         ...state,
         examStatus: "finished",
         index: 0,
+        result: state.exam.reduce((sum, item) => {
+          return item.correctAnswer === item.userAnswer
+            ? sum + item.score
+            : sum;
+        }, 0),
       };
       return state;
 
@@ -49,6 +54,14 @@ const examReducer = (
       state = {
         ...state,
         index: state.index === 31 ? 31 : state.index + 1,
+        activeAnswer: "",
+      };
+      return state;
+
+    case "GO_TO_QUESTION":
+      state = {
+        ...state,
+        index: action.index,
         activeAnswer: "",
       };
       return state;
@@ -69,7 +82,6 @@ const examReducer = (
           return newItem;
         }),
       };
-      console.log("2", state.exam);
       return state;
 
     default:

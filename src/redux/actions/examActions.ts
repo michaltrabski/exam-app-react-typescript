@@ -4,6 +4,7 @@ export type ExamDispatchType =
   | { type: "START_RANDOM_EXAM"; payload: QuestionType[] }
   | { type: "END_EXAM" }
   | { type: "NEXT_QUESTION" }
+  | { type: "GO_TO_QUESTION"; index: number }
   | { type: "SET_ACTIVE_ANSWER"; answer: AnswerType }
   | { type: "USER_GIVE_ANSWER"; answer: AnswerType; index: number };
 
@@ -22,6 +23,10 @@ export const endExam = (): ExamDispatchType => {
 
 export const nextQuestion = (): ExamDispatchType => {
   return { type: "NEXT_QUESTION" };
+};
+
+export const goToQuestion = (index: number): ExamDispatchType => {
+  return { type: "GO_TO_QUESTION", index };
 };
 
 export const setActiveAnswer = (answer: AnswerType): ExamDispatchType => {

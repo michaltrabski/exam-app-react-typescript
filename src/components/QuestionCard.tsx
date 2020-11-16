@@ -61,7 +61,7 @@ const QuestionCard = (props: Props) => {
   };
   return (
     <>
-      {examStatus === "in_progress" && <MyProgressBar />}
+      {examStatus === "in_progress" && <MyProgressBar isVideo={isVideo} />}
 
       <Card className={classes.root}>
         <CardActionArea>
@@ -86,11 +86,11 @@ const QuestionCard = (props: Props) => {
             component="h2"
             className={classes.questionText}
           >
-            {index + 1}) {question.text}
+            {index + 1}. {question.text}
           </Typography>
         </CardActions>
         <CardActions>
-          <Answers a={question.a} b={question.b} c={question.c} />
+          <Answers />
         </CardActions>
 
         {examStatus === "in_progress" && (

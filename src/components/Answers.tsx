@@ -7,12 +7,7 @@ import { State } from "../redux/store/store";
 import clsx from "clsx";
 import { setActiveAnswer, userGiveAnswer } from "../redux/actions/examActions";
 import { AnswerType } from "../redux/actions/questionsActions";
-
-interface Props {
-  a: string;
-  b: string;
-  c: string;
-}
+import { green, red } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -36,16 +31,30 @@ const useStyles = makeStyles((theme: Theme) =>
         backgroundColor: "#9E9E9E",
       },
     },
+    success: {
+      color: theme.palette.getContrastText(green[500]),
+      backgroundColor: green[500],
+      "&:hover": {
+        backgroundColor: green[700],
+      },
+    },
+    danger: {
+      color: theme.palette.getContrastText(red[500]),
+      backgroundColor: red[500],
+      "&:hover": {
+        backgroundColor: red[700],
+      },
+    },
   })
 );
 
-const Answers = (props: Props) => {
+const Answers = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { activeAnswer, examStatus, index } = useSelector(
+  const { exam, index, activeAnswer, examStatus } = useSelector(
     (state: State) => state.examReducer
   );
-  const { a, b, c } = props;
+  const { a, b, c } = exam[index];
 
   const handleAnswer = (answer: AnswerType, index: number) => {
     dispatch(setActiveAnswer(answer));
@@ -58,7 +67,13 @@ const Answers = (props: Props) => {
           <Button
             className={clsx(
               classes.btnAbc,
-              activeAnswer === "a" && classes.btnActive
+              examStatus === "in_progress" &&
+                activeAnswer === "a" &&
+                classes.btnActive,
+              examStatus === "finished" &&
+                classes[
+                  exam[index].correctAnswer === "a" ? "success" : "danger"
+                ]
             )}
             variant="contained"
             fullWidth
@@ -69,7 +84,13 @@ const Answers = (props: Props) => {
           <Button
             className={clsx(
               classes.btnAbc,
-              activeAnswer === "b" && classes.btnActive
+              examStatus === "in_progress" &&
+                activeAnswer === "b" &&
+                classes.btnActive,
+              examStatus === "finished" &&
+                classes[
+                  exam[index].correctAnswer === "b" ? "success" : "danger"
+                ]
             )}
             variant="contained"
             fullWidth
@@ -80,7 +101,13 @@ const Answers = (props: Props) => {
           <Button
             className={clsx(
               classes.btnAbc,
-              activeAnswer === "c" && classes.btnActive
+              examStatus === "in_progress" &&
+                activeAnswer === "c" &&
+                classes.btnActive,
+              examStatus === "finished" &&
+                classes[
+                  exam[index].correctAnswer === "c" ? "success" : "danger"
+                ]
             )}
             variant="contained"
             fullWidth
@@ -94,7 +121,13 @@ const Answers = (props: Props) => {
           <Button
             className={clsx(
               classes.btnYesNo,
-              activeAnswer === "t" && classes.btnActive
+              examStatus === "in_progress" &&
+                activeAnswer === "t" &&
+                classes.btnActive,
+              examStatus === "finished" &&
+                classes[
+                  exam[index].correctAnswer === "t" ? "success" : "danger"
+                ]
             )}
             variant="contained"
             size="large"
@@ -105,7 +138,11 @@ const Answers = (props: Props) => {
           <Button
             className={clsx(
               classes.btnYesNo,
-              activeAnswer === "n" && classes.btnActive
+              activeAnswer === "n" && classes.btnActive,
+              examStatus === "finished" &&
+                classes[
+                  exam[index].correctAnswer === "n" ? "success" : "danger"
+                ]
             )}
             variant="contained"
             size="large"

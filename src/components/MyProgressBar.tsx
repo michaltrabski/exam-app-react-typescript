@@ -38,7 +38,11 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 );
-const MyProgressBar = () => {
+
+interface Props {
+  isVideo: boolean;
+}
+const MyProgressBar = (props: Props) => {
   const classes = useStyles();
   const { lang } = useSelector((state: State) => state.uiReducer);
 
@@ -46,13 +50,16 @@ const MyProgressBar = () => {
 
   return (
     <Box display="flex" alignItems="center" className={classes.root}>
-      <Box>
-        <Box mr={1}>
-          <Button variant="contained" size="small">
-            {label.startVideo[lang]}
-          </Button>
+      {props.isVideo && (
+        <Box>
+          <Box mr={1}>
+            <Button variant="contained" size="small">
+              {label.startVideo[lang]}
+            </Button>
+          </Box>
         </Box>
-      </Box>
+      )}
+
       <Box width="100%" className={classes.progressBar}>
         <Box className={classes.progressBarGreen}></Box>
         <Box className={classes.progressBarText}>

@@ -3,14 +3,16 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import QuestionCard from "./QuestionCard";
-import { Box, Button, Container, Fade } from "@material-ui/core";
+import { Box, Button, Container, Fade, Typography } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../redux/store/store";
 import { randomExam } from "../util/util";
-import { startRandomExam } from "../redux/actions/examActions";
+import { goToQuestion, startRandomExam } from "../redux/actions/examActions";
 import { label } from "../settings/settings";
 import clsx from "clsx";
 import { green, red } from "@material-ui/core/colors";
+import Alert from "@material-ui/lab/Alert";
+import { AlertTitle } from "@material-ui/lab";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
     btn: {
       marginRight: theme.spacing(1),
       marginBottom: theme.spacing(1),
-      minWidth: "50px",
+      minWidth: "45px",
     },
     success: {
       color: theme.palette.getContrastText(green[500]),
@@ -48,7 +50,7 @@ export default function Exam() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { questions } = useSelector((state: State) => state.questionsReducer);
-  const { exam, examStatus, cat, index } = useSelector(
+  const { exam, examStatus, cat, index, result } = useSelector(
     (state: State) => state.examReducer
   );
   const { lang } = useSelector((state: State) => state.uiReducer);
@@ -64,24 +66,33 @@ export default function Exam() {
   return (
     <Grid item xs={12}>
       {examStatus === "finished" && (
-        <Box>
-          {exam.map((item, i) => (
-            <Button
-              className={clsx(
-                classes.btn,
-                classes[
-                  exam[i].correctAnswer === exam[i].userAnswer
-                    ? "success"
-                    : "danger"
-                ]
-              )}
-              variant="contained"
-              size="small"
-            >
-              {i + 1}
-            </Button>
-          ))}
-        </Box>
+        <>
+          <Box mb={2}>
+            <Alert severity="error">
+              <AlertTitle>Nie zdałeś!</AlertTitle>
+              Zdobyłeś jedynie — <strong>{result} pkt. </strong>(na 74 możliwe)
+            </Alert>
+          </Box>
+          <Box mb={1}>
+            {exam.map((item, i) => (
+              <Button
+                className={clsx(
+                  classes.btn,
+                  classes[
+                    exam[i].correctAnswer === exam[i].userAnswer
+                      ? "success"
+                      : "danger"
+                  ]
+                )}
+                variant="contained"
+                size="small"
+                onClick={() => dispatch(goToQuestion(i))}
+              >
+                {i + 1}
+              </Button>
+            ))}
+          </Box>
+        </>
       )}
 
       {(examStatus === "in_progress" || examStatus === "finished") && (
