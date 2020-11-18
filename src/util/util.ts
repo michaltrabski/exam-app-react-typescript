@@ -1,4 +1,5 @@
 import { QuestionType } from "../redux/actions/questionsActions";
+import _ from "lodash";
 
 interface questionsGrouped {
   base1: QuestionType[];
@@ -21,7 +22,8 @@ export const randomExam = (
     spec3: [],
   };
   // console.log("questions", questions);
-  questions
+
+  _.shuffle(questions)
     .filter((item) => item.cats.includes(cat))
     .forEach((item) => {
       if (item.a === "") {
@@ -77,7 +79,7 @@ export const randomExam = (
     questionsGrouped.spec3.pop() || questions.slice(0, 1)[0],
   ];
 
-  console.log("questionsGrouped", questionsGrouped, exam);
+  // console.log("questionsGrouped", questionsGrouped, exam);
   if (exam.length === 32) return exam;
   return questions.slice(0, 1);
 };

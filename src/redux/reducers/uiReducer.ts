@@ -39,13 +39,14 @@ const uiReducer = (state = defaultState, action: UiDispatchType) => {
 
     case "TOOGLE_THEME":
       // console.log("action", action);
-      // console.log("state1", state);
+      console.log("state1", state);
       state = {
         ...state,
         theme: state.theme === "light" ? "dark" : "light",
       };
-      // console.log("state2", state);
+      console.log("state2", state, state.theme === "light" ? "dark" : "light");
       return state;
+
     default:
       return state;
   }

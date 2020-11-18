@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme: Theme) =>
         backgroundColor: red[700],
       },
     },
+    selected: { boxShadow: "0 0 0 3px black inset !important" },
   })
 );
 
@@ -78,6 +79,7 @@ export default function Exam() {
               <Button
                 className={clsx(
                   classes.btn,
+                  i === index && classes.selected,
                   classes[
                     exam[i].correctAnswer === exam[i].userAnswer
                       ? "success"
@@ -100,19 +102,24 @@ export default function Exam() {
       )}
 
       {(examStatus === "not_started" || examStatus === "finished") && (
-        <Box mb={3}>
-          <Button
-            variant="contained"
-            color="secondary"
-            size="large"
-            onClick={handleStartRandomExam}
-            fullWidth
-          >
-            {examStatus === "finished"
-              ? label.startExamAgain[lang]
-              : label.startExam[lang]}
-          </Button>
-        </Box>
+        <>
+          <Typography variant="h3" component="h1" gutterBottom align="center">
+            Wykonaj egzamin
+          </Typography>
+          <Box mb={3}>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              onClick={handleStartRandomExam}
+              fullWidth
+            >
+              {examStatus === "finished"
+                ? label.startExamAgain[lang]
+                : label.startExam[lang]}
+            </Button>
+          </Box>
+        </>
       )}
     </Grid>
   );

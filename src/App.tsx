@@ -16,6 +16,7 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { Paper } from "@material-ui/core";
 import { State } from "./redux/store/store";
 import Dev from "./pages/Dev";
+import MyModal from "./components/MyModal";
 
 const darkTheme = createMuiTheme({
   palette: {
@@ -44,6 +45,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+      {/* {console.log("x", theme)} */}
       {/* <Paper> */}
       <Router>
         <Navbar />
@@ -58,6 +60,8 @@ function App() {
         </Switch>
         <Footer />
       </Router>
+
+      <MyModal />
       {/* </Paper> */}
     </ThemeProvider>
   );

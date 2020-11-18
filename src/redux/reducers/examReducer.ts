@@ -10,7 +10,7 @@ interface ExamState {
   result: number;
 }
 
-const qnr = 14;
+const qnr = 3;
 const defaultState: ExamState = {
   cat: "b",
   exam: [],
@@ -26,17 +26,16 @@ const examReducer = (
 ) => {
   switch (action.type) {
     case "START_RANDOM_EXAM":
-      // console.log(" action.payload", action.payload);
       state = {
         ...state,
         exam: action.payload,
+        activeAnswer: "",
         examStatus: "in_progress",
         index: qnr,
       };
       return state;
 
     case "END_EXAM":
-      // console.log("1", action);
       state = {
         ...state,
         examStatus: "finished",
@@ -50,10 +49,9 @@ const examReducer = (
       return state;
 
     case "NEXT_QUESTION":
-      // console.log(" action.payload", action.payload);
       state = {
         ...state,
-        index: state.index === 31 ? 31 : state.index + 1,
+        index: state.index === 31 ? 31 : state.index + 7,
         activeAnswer: "",
       };
       return state;

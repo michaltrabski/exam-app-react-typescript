@@ -12,7 +12,7 @@ import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../redux/store/store";
-import { toogleMobileMenu } from "../redux/actions/uiActions";
+import { toogleMobileMenu, toogleTheme } from "../redux/actions/uiActions";
 import { sideMenuLinks } from "../settings/settings";
 import { Link } from "react-router-dom";
 import { IconButton, Theme } from "@material-ui/core";
@@ -93,7 +93,7 @@ function SwipeableTemporaryDrawer() {
 
         <Divider />
 
-        <ListItem button>
+        <ListItem button onClick={() => dispatch(toogleTheme())}>
           <ListItemIcon>
             <SettingsBrightnessIcon />
           </ListItemIcon>
