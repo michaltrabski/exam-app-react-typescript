@@ -8,6 +8,7 @@ import DescriptionIcon from "@material-ui/icons/Description";
 export const fadeDuration = 200;
 
 export const MEDIA_URl = "https://poznaj-testy.hekko24.pl/pytania/";
+export const MEDIA_PATH = "https://poznaj-testy.hekko24.pl/pytania/";
 
 type Lang = { pl: string; en: string; de: string };
 

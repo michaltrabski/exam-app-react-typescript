@@ -19,6 +19,7 @@ import CircleProgress from "./CircleProgress";
 import { useDispatch, useSelector } from "react-redux";
 import { endExam, nextQuestion } from "../redux/actions/examActions";
 import { State } from "../redux/store/store";
+import { useImage } from "../hooks/hooks";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -46,9 +47,11 @@ const QuestionCard = (props: Props) => {
     (state: State) => state.examReducer
   );
   const { lang } = useSelector((state: State) => state.uiReducer);
-  const { question } = props;
 
-  const isVideo = question.media.includes(".mp4");
+  const { question } = props;
+  const { mediaUrl, isVideo } = useImage(question.media);
+
+  // console.log("xxxxxxx", mediaUrl, isVideo);
 
   const handleNextQuestion = () => {
     if (index === 31) {
@@ -64,20 +67,17 @@ const QuestionCard = (props: Props) => {
       {examStatus === "in_progress" && <MyProgressBar isVideo={isVideo} />}
 
       <Card className={classes.root}>
-        <CardActionArea>
-          <CardMedia
-            component={isVideo ? "video" : "img"}
-            alt="Contemplative Reptile"
-            image={MEDIA_URl + question.media}
-            title="video or image title"
-            controls={isVideo}
-            onLoad={() => {
-              // console.log("wideo loaded");
-              // setMediaLoaded(true);
-            }}
-          />
-          {/* {mediaLoaded ? <></> : <CircleProgress />} */}
-        </CardActionArea>
+        {/* <CardActionArea> */}
+        <CardMedia
+          component={isVideo ? "video" : "img"}
+          alt="Contemplative Reptile"
+          // height={100}
+          image={mediaUrl}
+          title="video or image title"
+          controls={isVideo}
+        />
+        {/* {mediaLoaded ? <></> : <CircleProgress />} */}
+        {/* </CardActionArea> */}
 
         <CardActions>
           <Typography

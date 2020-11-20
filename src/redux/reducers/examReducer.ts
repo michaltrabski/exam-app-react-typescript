@@ -51,7 +51,7 @@ const examReducer = (
     case "NEXT_QUESTION":
       state = {
         ...state,
-        index: state.index === 31 ? 31 : state.index + 7,
+        index: state.index === 31 ? 31 : state.index + 2,
         activeAnswer: "",
       };
       return state;

@@ -21,12 +21,12 @@ import MyModal from "./components/MyModal";
 const darkTheme = createMuiTheme({
   palette: {
     type: "dark",
-    primary: {
-      main: "#1a237e",
-    },
-    secondary: {
-      main: "#880e4f",
-    },
+    // primary: {
+    //   main: "#1a237e",
+    // },
+    // secondary: {
+    //   main: "#880e4f",
+    // },
   },
 });
 
