@@ -73,9 +73,9 @@ function App() {
     //     // ..
     //   });
 
-    // firebase
-    //   .auth()
-    //   .signInWithEmailAndPassword("michal.trabski@gmail.com", "123123");
+    firebase
+      .auth()
+      .signInWithEmailAndPassword("michal.trabski@gmail.com", "123123");
   }, []);
 
   return (
@@ -97,7 +97,7 @@ function App() {
         <Footer />
       </Router>
 
-      <MyModal />
+      {/* <MyModal /> */}
       {/* </Paper> */}
     </ThemeProvider>
   );
