@@ -6,6 +6,7 @@ import MyTable from "./Table";
 import DoneOutlinedIcon from "@material-ui/icons/DoneOutlined";
 import { green } from "@material-ui/core/colors";
 import ShoppingCartSharpIcon from "@material-ui/icons/ShoppingCartSharp";
+import MyList from "./MyList";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -26,38 +27,11 @@ export default function Offer() {
 
   return (
     <div>
-      <Typography variant="h3" component="h2" gutterBottom align="center">
+      <Typography variant="h4" component="h2" gutterBottom align="center">
         Oferta
       </Typography>
 
-      <Typography variant="body1" gutterBottom>
-        <DoneOutlinedIcon style={{ color: green[500] }} />
-        Lorem ipsum dolor sit amet consectetur adipisicing.
-      </Typography>
-      <Typography variant="body1" gutterBottom>
-        <DoneOutlinedIcon style={{ color: green[500] }} />
-        Lorem ipsum dolor sit amet consectetur adipisicing.
-      </Typography>
-      <Typography variant="body1" gutterBottom>
-        <DoneOutlinedIcon style={{ color: green[500] }} />
-        Lorem ipsum dolor sit amet consectetur adipisicing.
-      </Typography>
-      <Typography variant="body1" gutterBottom>
-        <DoneOutlinedIcon style={{ color: green[500] }} />
-        Lorem ipsum dolor sit amet consectetur adipisicing.
-      </Typography>
-      <Typography variant="body1" gutterBottom>
-        <DoneOutlinedIcon style={{ color: green[500] }} />
-        Lorem ipsum dolor sit amet consectetur adipisicing.
-      </Typography>
-      <Typography variant="body1" gutterBottom>
-        <DoneOutlinedIcon style={{ color: green[500] }} />
-        Lorem ipsum dolor sit amet consectetur adipisicing.
-      </Typography>
-      <Typography variant="body1" gutterBottom>
-        <DoneOutlinedIcon style={{ color: green[500] }} />
-        Lorem ipsum dolor sit amet consectetur adipisicing.
-      </Typography>
+      <MyList />
 
       <Box mb={1}>
         <Button

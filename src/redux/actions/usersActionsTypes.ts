@@ -3,10 +3,12 @@ export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
 
 export type UserType = {
   uid: string;
+  email: string | null;
 };
 
-interface GetUserType {
+interface GetUserActionType {
   type: typeof GET_USER;
+  user: UserType;
 }
 
-export type UserDispatchType = GetUserType;
+export type UserDispatchType = GetUserActionType;

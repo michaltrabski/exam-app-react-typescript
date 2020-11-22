@@ -1,4 +1,8 @@
-import { UserDispatchType, UserType } from "../actions/usersActionsTypes";
+import {
+  GET_USER,
+  UserDispatchType,
+  UserType,
+} from "../actions/usersActionsTypes";
 
 interface UsersStateI {
   users: UserType[];
@@ -7,14 +11,21 @@ interface UsersStateI {
 
 const defaultState = {
   users: [],
-  user: { uid: "" },
+  user: { uid: "", email: "" },
 };
 
 const usersReducer = (
   state: UsersStateI = defaultState,
   action: UserDispatchType
 ) => {
-  return state;
+  switch (action.type) {
+    case GET_USER:
+      state = { ...state, user: action.user };
+      return state;
+
+    default:
+      return state;
+  }
 };
 
 export default usersReducer;

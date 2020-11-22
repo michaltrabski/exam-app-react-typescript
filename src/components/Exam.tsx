@@ -96,15 +96,15 @@ export default function Exam() {
           </Box>
         </>
       )}
-
       {(examStatus === "in_progress" || examStatus === "finished") && (
         <QuestionCard question={question} />
       )}
-
       {(examStatus === "not_started" || examStatus === "finished") && (
         <>
-          <Typography variant="h3" component="h1" gutterBottom align="center">
-            Wykonaj egzamin
+          <Typography variant="h4" component="h1" gutterBottom align="center">
+            {examStatus === "finished"
+              ? label.makeExamAgain[lang]
+              : label.makeExam[lang]}
           </Typography>
           <Box mb={3}>
             <Button

@@ -3,13 +3,14 @@ import {
   GET_USER,
   GET_USER_SUCCESS,
   UserDispatchType,
+  UserType,
 } from "./usersActionsTypes";
 
-export const GetUser = (uid: string) => async (
+export const GetUser = (user: UserType) => async (
   dispatch: Dispatch<UserDispatchType>
 ) => {
   try {
-    dispatch({ type: GET_USER });
+    dispatch({ type: GET_USER, user });
 
     // const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
     // console.log("GetPokemon", res);

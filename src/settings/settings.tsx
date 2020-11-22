@@ -4,7 +4,8 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
 import SchoolIcon from "@material-ui/icons/School";
 import DescriptionIcon from "@material-ui/icons/Description";
-
+import AccountBoxIcon from "@material-ui/icons/AccountBox";
+import AccountBoxOutlinedIcon from "@material-ui/icons/AccountBoxOutlined";
 export const fadeDuration = 200;
 
 export const MEDIA_URl = "https://poznaj-testy.hekko24.pl/pytania/";
@@ -28,6 +29,12 @@ export const label = {
     url: "/rejestracja",
     icon: <GroupAddIcon />,
   },
+  topMenuMyAccount: {
+    text: { pl: "Moje konto" },
+    url: "/konto",
+    icon: <AccountBoxIcon />,
+  },
+
   topMenuExam: {
     text: { pl: "Egzamin" },
     url: "/egzamin",
@@ -54,6 +61,16 @@ export const label = {
     en: "Start another random exam",
     de: "Starten egzamen",
   },
+  makeExam: {
+    pl: "Wykonaj egzamin",
+    en: "Run an exam",
+    de: "Starten egzamen",
+  },
+  makeExamAgain: {
+    pl: "Wykonaj ponownie egzamin",
+    en: "Run another exam",
+    de: "Starten egzamen",
+  },
   nextQuestion: {
     pl: "Następne",
     en: "Next",
@@ -68,4 +85,5 @@ export const sideMenuLinks = [
   "divider",
   label.topMenuLogin,
   label.topMenuRegister,
+  label.topMenuMyAccount,
 ];
